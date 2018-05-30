@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^23.0.1"
   },
   "scripts": {
@@ -38,5 +39,29 @@
   "bugs": {
     "url": "https://github.com/phizog/phizog/issues"
   },
-  "homepage": "https://github.com/phizog/phizog#readme"
+  "homepage": "https://github.com/phizog/phizog#readme",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "test-file-stub",
+      "\\.(css|less|sass|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/test/preprocessor.js"
+    },
+    "testMatch": [
+      "**/?(*.)(spec|test).ts?(x)"
+    ]
+  },
+  "devEngines": {
+    "node": ">=6.x",
+    "npm": ">=4.x"
+  }
 }
