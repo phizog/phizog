@@ -51,7 +51,74 @@
     "webpack-merge": "^4.1.2"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test node --trace-warnings ./test/runner.js"
+    "test": "cross-env NODE_ENV=test node --trace-warnings ./test/runner.js",
+    "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 server.js",
+    "build-main": "cross-env NODE_ENV=production node webpack --config webpack.config.electron.js --progress --profile --colors",
+    "build-renderer": "cross-env NODE_ENV=production node webpack --config webpack.config.production.js --progress --profile --colors",
+    "build": "npm run build-main && npm run build-renderer",
+    "start": "cross-env NODE_ENV=production electron ./app/",
+    "start-hot": "cross-env HOT=1 NODE_ENV=development electron ./app/main.development",
+    "dev": "npm run hot-server -- --start-hot",
+    "package": "npm run build && build --publish never",
+    "package:win": "npm run build && build --win --x64",
+    "package:linux": "npm run build && build --linux",
+    "package:mac": "npm run build && build --mac",
+    "package:all": "npm run build && build -mwl"
+  },
+  "build": {
+    "productName": "ElectronReactTypescript",
+    "appId": "com.phizog.phizog",
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "files": [
+      "dist/",
+      "node_modules/",
+      "app.html",
+      "main.js",
+      "main.js.map",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "resources",
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "appx"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "pacman"
+      ],
+      "category": "Development"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg"
+      ]
+    }
+  },
+  "bin": {
+    "electron": "./node_modules/.bin/electron",
+    "webpack": "./node_modules/webpack/bin/webpack"
   },
   "repository": {
     "type": "git",
