@@ -8,8 +8,10 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
+    "@types/typescript": "^2.0.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^23.0.1"
+    "jest": "^23.0.1",
+    "typescript": "^2.8.3"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test node --trace-warnings ./test/runner.js"
