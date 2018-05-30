@@ -1,0 +1,30 @@
+{
+  "name": "phizog",
+  "version": "0.1.0",
+  "description": "Socket API Development Environment",
+  "main": "index.js",
+  "dependencies": {
+    "standard": "^11.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "cross-env NODE_ENV=test node --trace-warnings ./test/runner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phizog/phizog.git"
+  },
+  "keywords": [
+    "websocket",
+    "socket",
+    "api",
+    "development",
+    "environment"
+  ],
+  "author": "Masoud Ghorbani <msud.ghorbani@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phizog/phizog/issues"
+  },
+  "homepage": "https://github.com/phizog/phizog#readme"
+}
