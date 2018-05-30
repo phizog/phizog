@@ -6,7 +6,10 @@
   "dependencies": {
     "standard": "^11.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "jest": "^23.0.1"
+  },
   "scripts": {
     "test": "cross-env NODE_ENV=test node --trace-warnings ./test/runner.js"
   },
