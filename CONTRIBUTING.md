@@ -13,3 +13,10 @@ Please note we have a [**`code of conduct`**][coc], please follow it in all your
 [coc]: http://github.com/phizog/phizog/CODE_OF_CONDUCT.md
 [semver]: http://semver.org/
 [sjs]: https://standardjs.com/
+
+# Development Dependencies
+| Dependency | Version |
+|------------|---------|
+| NodeJs     | >=6.*   |
+| Npm        | >=4.*   |
+| Electron   | 2.0.2   |
