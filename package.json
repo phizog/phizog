@@ -21,7 +21,16 @@
     "development",
     "environment"
   ],
-  "author": "Masoud Ghorbani <msud.ghorbani@gmail.com>",
+  "contributors": [
+    {
+      "name": "Masoud Ghorbani",
+      "email": "msud.ghorbani@gmail.com"
+    },
+    {
+      "name": "Farzad Yousef Zadeh",
+      "email": "farskid@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/phizog/phizog/issues"
