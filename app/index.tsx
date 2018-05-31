@@ -13,7 +13,6 @@ render(
   document.getElementById('root')
 )
 
-console.log(module)
 if ((module as any).hot) {
   (module as any).hot.accept('./containers/Root', () => {
     const NextRoot = require('./containers/Root').default
