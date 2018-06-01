@@ -1,8 +1,6 @@
 const { app, BrowserWindow, Menu, shell } = require('electron')
 const debug = require('electron-debug')
 
-let menu
-let template
 let mainWindow = null
 
 if (process.env.NODE_ENV === 'production') {
@@ -42,7 +40,8 @@ app.on('ready', () =>
       mainWindow = new BrowserWindow({
         show: false,
         width: 1024,
-        height: 728
+        height: 728,
+        frame: false
       })
 
       mainWindow.loadURL(`file://${__dirname}/app.html`)
