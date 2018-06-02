@@ -62,3 +62,6 @@ typings/
 
 # lock files
 package-lock.json
+
+# dist
+app/dist
