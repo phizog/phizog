@@ -20,7 +20,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "allowJs": true
   },
   "files": [
     "app/index.tsx"
