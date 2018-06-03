@@ -39,23 +39,22 @@ class Profiler {
    */
   create () {
     try {
-      // load profile template
-      readFile(constants.profileTemplatePath, 'utf8', (error, data) => {
-        if (error) throw error
-
-        // modify template
-        let template = JSON.parse(data)
-        template['user_type'] = 'guest'
-        template['token'] = ''
-        template['gistId'] = ''
-
-        // write modified template
-        writeFile(this.path, JSON.stringify(template), (error) => {
+      if (!this.data) {
+        // load profile template
+        readFile(constants.profileTemplatePath, 'utf8', (error, data) => {
           if (error) throw error
-          this.data = template
-          return true
+
+          // modify template
+          let template = JSON.parse(data)
+          template['user_type'] = 'guest'
+          template['token'] = ''
+          template['gistId'] = ''
+
+          this.save(template)
         })
-      })
+      } else {
+        this.save(this.data)
+      }
     } catch (error) {
       throw error
     }
@@ -67,6 +66,23 @@ class Profiler {
 
       this.data = JSON.parse(data)
     })
+  }
+  /**
+   * Save profile data to disc
+   *
+   * @param {*} data
+   * @memberof Profiler
+   */
+  save (data) {
+    try {
+      writeFile(this.path, JSON.stringify(data), (error) => {
+        if (error) throw error
+        this.data = data
+        return true
+      })
+    } catch (error) {
+      throw error
+    }
   }
 }
 
