@@ -1,0 +1,33 @@
+{
+  "name": "phizog",
+  "productName": "com.phizog.phizog",
+  "version": "0.1.0",
+  "description": "Socket API Development Environment",
+  "main": "main.js",
+  "keywords": [
+    "websocket",
+    "socket",
+    "api",
+    "development",
+    "environment"
+  ],
+  "author": {
+    "name": "Masoud Ghorbani",
+    "email": "msud.ghorbani@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Masoud Ghorbani",
+      "email": "msud.ghorbani@gmail.com"
+    },
+    {
+      "name": "Farzad Yousef Zadeh",
+      "email": "farskid@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phizog/phizog/issues"
+  },
+  "homepage": "https://github.com/phizog/phizog#readme"
+}
