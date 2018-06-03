@@ -9,7 +9,7 @@
         if (!process.env.HOT) {
           const link = document.createElement('link');
           link.rel = 'stylesheet';
-          link.href = './dist/style.css';
+          link.href = './dist/main.css';
           document.getElementsByTagName('head')[0].appendChild(link);
         }
       }());
@@ -20,8 +20,7 @@
     <script>
       {
         const script = document.createElement('script');
-        const port = process.env.PORT || 3000;
-        script.src = (process.env.HOT) ? `http://localhost:${port}/dist/bundle.js` : './dist/bundle.js';
+        script.src = (process.env.HOT) ? `http://localhost:3000/dist/bundle.js` : './dist/bundle.js';
         // HACK: Writing the script path should be done with webpack
         document.body.appendChild(script);
       }
