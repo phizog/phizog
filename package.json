@@ -27,7 +27,7 @@
     "file-loader": "^1.1.11",
     "history": "^4.7.2",
     "html-webpack-plugin": "^3.2.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.8",
     "identity-obj-proxy": "^3.0.0",
     "is-electron-renderer": "^2.0.1",
     "jest": "^23.1.0",
