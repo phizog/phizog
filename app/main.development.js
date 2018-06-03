@@ -1,5 +1,5 @@
-const { app, BrowserWindow, Menu, shell } = require('electron')
-const debug = require('electron-debug')
+const { app, BrowserWindow } = require('electron')
+const Profiler = require('./modules/profiler')
 
 let mainWindow = null
 
@@ -9,8 +9,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 if (process.env.NODE_ENV === 'development') {
-  debug()
-
   // add node_module path to global paths
   const path = require('path')
   const p = path.join(__dirname, '..', 'app', 'node_modules')
@@ -47,21 +45,16 @@ app.on('ready', () =>
       mainWindow.loadURL(`file://${__dirname}/app.html`)
 
       mainWindow.webContents.on('did-finish-load', () => {
+        let p = new Profiler()
+        console.log(p.path)
+
         mainWindow.show()
         mainWindow.focus()
       })
 
-      mainWindow.on('closed', () => {
-        mainWindow = null
+      mainWindow.webContents.openDevTools({
+        mode: 'bottom'
       })
-
       if (process.env.NODE_ENV === 'development') {
-        mainWindow.openDevTools()
-        mainWindow.webContents.on('context-menu', (e, props) => {
-          Menu.buildFromTemplate([{
-            label: 'Inspect element',
-            click: () => mainWindow.inspectElement(props.x, props.y)
-          }]).popup(mainWindow)
-        })
       }
     }))
