@@ -68,7 +68,7 @@ class Profiler {
     })
   }
   /**
-   * Save profile data to disc
+   * Save profile data on disc
    *
    * @param {*} data
    * @memberof Profiler
