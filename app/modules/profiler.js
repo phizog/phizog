@@ -20,9 +20,13 @@ class Profiler {
    * @param {object} [data={}]
    * @memberof Profiler
    */
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.path = constants.profilePath
-    this.data = data ? joi.validate(data, profileDataSchema).error === null ? data : new Error('data parameter isn\'t valid.') : {}
+    this.data = data
+      ? joi.validate(data, profileDataSchema).error === null
+        ? data
+        : new Error("data parameter isn't valid.")
+      : {}
 
     if (!existsSync(this.path)) {
       this.create()
@@ -37,7 +41,7 @@ class Profiler {
    * @memberof Profiler
    * @returns {boolean} file created or not
    */
-  create () {
+  create() {
     try {
       if (!this.data) {
         // load profile template
@@ -59,7 +63,7 @@ class Profiler {
       throw error
     }
   }
-  load () {
+  load() {
     // load profile file
     readFile(this.path, 'utf8', (error, data) => {
       if (error) throw error
@@ -73,9 +77,9 @@ class Profiler {
    * @param {*} data
    * @memberof Profiler
    */
-  save (data) {
+  save(data) {
     try {
-      writeFile(this.path, JSON.stringify(data), (error) => {
+      writeFile(this.path, JSON.stringify(data), error => {
         if (error) throw error
         this.data = data
         return true
