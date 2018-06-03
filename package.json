@@ -96,7 +96,7 @@
     "linux": {
       "target": [
         "deb",
-        "rpm",
+        "snap",
         "pacman"
       ],
       "category": "Development"
