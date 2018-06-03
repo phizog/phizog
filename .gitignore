@@ -66,3 +66,5 @@ package-lock.json
 # dist
 app/dist
 release
+app/main.js
+app/main.js.map
