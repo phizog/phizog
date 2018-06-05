@@ -156,10 +156,7 @@
     ],
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/test/preprocessor.js"
-    },
-    "testMatch": [
-      "**/?(*.)(spec|test).ts?(x)"
-    ]
+    }
   },
   "devEngines": {
     "node": ">=6.x",
