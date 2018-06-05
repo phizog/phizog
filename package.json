@@ -6,6 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/electron": "^1.6.10",
+    "@types/enzyme": "^3.1.10",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.4",
     "@types/react": "^16.3.14",
@@ -23,6 +24,8 @@
     "electron": "^2.0.2",
     "electron-builder": "^20.15.1",
     "electron-devtools-installer": "^2.2.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
     "history": "^4.7.2",
@@ -62,7 +65,7 @@
     "webpack-merge": "^4.1.2"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test node --trace-warnings ./test/runner.js",
+    "test": "cross-env NODE_ENV=test node --trace-warnings ./scripts/test-runner.js",
     "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 server.js",
     "build-main": "cross-env NODE_ENV=production webpack --config webpack.config.electron.js --progress --profile --colors",
     "build-renderer": "cross-env NODE_ENV=production webpack --config webpack.config.production.js --progress --profile --colors",
@@ -142,6 +145,10 @@
   },
   "homepage": "https://github.com/phizog/phizog#readme",
   "jest": {
+    "setupFiles": [
+      "./scripts/test-shim.js",
+      "./scripts/test-setup.js"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "test-file-stub",
       "\\.(css|less|sass|scss)$": "identity-obj-proxy"
@@ -155,7 +162,7 @@
       "node_modules"
     ],
     "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/test/preprocessor.js"
+      "^.+\\.(ts|tsx)$": "<rootDir>/scripts/test-preprocessor.js"
     },
     "testMatch": [
       "**/?(*.)(spec|test).ts?(x)"
