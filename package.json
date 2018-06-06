@@ -8,7 +8,6 @@
     "@types/electron": "^1.6.10",
     "@types/enzyme": "^3.1.10",
     "@types/jest": "^22.2.3",
-    "@types/joi": "^13.0.8",
     "@types/node": "^10.1.4",
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5",
@@ -154,13 +153,15 @@
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "test-file-stub",
-      "\\.(css|less|sass|scss)$": "identity-obj-proxy"
+      "\\.(css|less|sass|scss)$": "identity-obj-proxy",
+      "electron": "<rootDir>/scripts/mocks/electron.ts"
     },
     "moduleFileExtensions": [
       "ts",
       "tsx",
       "js"
     ],
+    "verbose": true,
     "moduleDirectories": [
       "node_modules"
     ],
@@ -169,6 +170,9 @@
     },
     "testMatch": [
       "**/?(*.)(spec|test).ts?(x)"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/?!(path)"
     ]
   },
   "devEngines": {
