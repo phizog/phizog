@@ -1,4 +1,6 @@
-// is-electron-renderer doesn't have type defination
+/* is-electron-renderer required in commongjs way because it doesn't
+ * have type defination.
+ */
 const isRenderer = require('is-electron-renderer')
 import { app, remote } from 'electron'
 import { join } from 'path'
