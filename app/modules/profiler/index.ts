@@ -1,5 +1,5 @@
 import { constants } from '../constants'
-import { existsSync, readFile, writeFile } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 
 interface Profile {
   user_type: 'guest' | 'authorized'
@@ -21,75 +21,40 @@ export class Profiler {
    * @param {object} [data=Profile]
    * @memberof Profiler
    */
-  path: string
   data: Profile
-  constructor (path: string = constants.profilePath, data: Profile) {
-    this.path = path
+  path: string
+  constructor (data?: Profile, path?: string) {
     this.data = data
-
-    if (!existsSync(this.path)) {
-      this.create()
-    } else {
-      this.load()
-    }
+      ? data
+      : {
+        user_type: 'guest'
+      }
+    this.path = path ? path : constants.profilePath
   }
   /**
-   * Create profile file according profile template and passed parameters to
-   * profiler instance.
+   * Load profile
    *
+   * @returns {void}
    * @memberof Profiler
-   * @returns {void} return save function
    */
-  create (): void {
+  load (): boolean {
     try {
-      if (!this.data) {
-        // load profile template
-        readFile(constants.profileTemplatePath, 'utf8', (error, data) => {
-          if (error) throw error
-
-          // modify template
-          let template = JSON.parse(data)
-          template['user_type'] = 'guest'
-          template['token'] = ''
-          template['gistId'] = ''
-
-          return this.save(template)
-        })
-      } else {
-        return this.save(this.data)
-      }
+      this.data = JSON.parse(readFileSync(this.path, 'utf8'))
+      return true
     } catch (error) {
       throw error
     }
   }
   /**
-   * Load profile and set it to `data` parameter
+   * write profile on disc
    *
    * @returns {void}
    * @memberof Profiler
    */
-  load (): void {
-    // load profile file
-    readFile(this.path, 'utf8', (error, data) => {
-      if (error) throw error
-
-      this.data = JSON.parse(data)
-    })
-  }
-  /**
-   * Save profile data on disc
-   *
-   * @param {object} data
-   * @returns {void}
-   * @memberof Profiler
-   */
-  save (data: Profile): void {
+  save (): boolean {
     try {
-      writeFile(this.path, JSON.stringify(data), error => {
-        if (error) throw error
-        this.data = data
-        return true
-      })
+      writeFileSync(this.path, JSON.stringify(this.data))
+      return true
     } catch (error) {
       throw error
     }
