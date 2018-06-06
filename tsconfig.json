@@ -29,11 +29,11 @@
   "include": [
     "app/**/*.ts",
     "app/**/*.tsx",
-    "test/**/*.ts",
-    "test/**/*.tsx"
   ],
   "exclude": [
     "dist",
-    "node_modules/**"
+    "node_modules/**",
+    "app/**/*.spec.ts",
+    "app/**/*.spec.tsx"
   ]
 }
