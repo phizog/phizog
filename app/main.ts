@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from 'electron'
-// const Profiler = require('./modules/profiler')
 
 let mainWindow: Electron.BrowserWindow
 
@@ -38,11 +37,6 @@ app.on('ready', () =>
     mainWindow.loadURL(`file://${__dirname}/app.html`)
 
     mainWindow.webContents.on('did-finish-load', () => {
-      // let p = new Profiler({
-      //   user_type: 'guest'
-      // })
-      // console.log(p.data)
-
       mainWindow.show()
       mainWindow.focus()
     })

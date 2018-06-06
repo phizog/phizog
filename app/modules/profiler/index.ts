@@ -1,11 +1,11 @@
-const constants = require('./constants')
-const { existsSync, readFile, writeFile } = require('fs')
-const joi = require('joi')
+import { constants } from '../constants'
+import { existsSync, readFile, writeFile } from 'fs'
 
-const profileDataSchema = {
-  user_type: joi.string().required(),
-  token: joi.string().allow('', null),
-  gistId: joi.string().allow('', null)
+interface Profile {
+  user_type: 'guest' | 'authorized'
+  token?: string
+  gistId?: string
+  lastSyncDate?: Date
 }
 
 /**
@@ -14,19 +14,18 @@ const profileDataSchema = {
  *
  * @class Profiler
  */
-class Profiler {
+export class Profiler {
   /**
    * Creates an instance of Profiler.
-   * @param {object} [data={}]
+   * @param {string} [path=constants.profilePath]
+   * @param {object} [data=Profile]
    * @memberof Profiler
    */
-  constructor(data = {}) {
-    this.path = constants.profilePath
+  path: string
+  data: Profile
+  constructor (path: string = constants.profilePath, data: Profile) {
+    this.path = path
     this.data = data
-      ? joi.validate(data, profileDataSchema).error === null
-        ? data
-        : new Error("data parameter isn't valid.")
-      : {}
 
     if (!existsSync(this.path)) {
       this.create()
@@ -39,9 +38,9 @@ class Profiler {
    * profiler instance.
    *
    * @memberof Profiler
-   * @returns {boolean} file created or not
+   * @returns {void} return save function
    */
-  create() {
+  create (): void {
     try {
       if (!this.data) {
         // load profile template
@@ -54,16 +53,22 @@ class Profiler {
           template['token'] = ''
           template['gistId'] = ''
 
-          this.save(template)
+          return this.save(template)
         })
       } else {
-        this.save(this.data)
+        return this.save(this.data)
       }
     } catch (error) {
       throw error
     }
   }
-  load() {
+  /**
+   * Load profile and set it to `data` parameter
+   *
+   * @returns {void}
+   * @memberof Profiler
+   */
+  load (): void {
     // load profile file
     readFile(this.path, 'utf8', (error, data) => {
       if (error) throw error
@@ -74,10 +79,11 @@ class Profiler {
   /**
    * Save profile data on disc
    *
-   * @param {*} data
+   * @param {object} data
+   * @returns {void}
    * @memberof Profiler
    */
-  save(data) {
+  save (data: Profile): void {
     try {
       writeFile(this.path, JSON.stringify(data), error => {
         if (error) throw error
@@ -89,5 +95,3 @@ class Profiler {
     }
   }
 }
-
-module.exports = Profiler
