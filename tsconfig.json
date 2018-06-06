@@ -28,7 +28,7 @@
   ],
   "include": [
     "app/**/*.ts",
-    "app/**/*.tsx",
+    "app/**/*.tsx"
   ],
   "exclude": [
     "dist",
