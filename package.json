@@ -80,8 +80,8 @@
     "package:linux": "npm run build && build --linux",
     "package:mac": "npm run build && build --mac",
     "package:all": "npm run build && build -mwl",
-    "formatter": "prettier --write --config .pritterrc \"{app,test}/**/*.{js, ts, tsx}\"",
-    "lint": "tslint -c tslint.json --fix \"{app,test}/**/*.{js, ts, tsx, css, scss}\""
+    "formatter": "prettier --write --config .pritterrc \"{app,test}/**/*.ts{,x}\"",
+    "lint": "tslint -c tslint.json --fix \"{app,test}/**/*.ts{,x}\""
   },
   "build": {
     "productName": "Phizog",
