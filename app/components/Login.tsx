@@ -4,7 +4,7 @@ export default class Login extends React.Component {
   render () {
     return (
       <div>
-        <div data-tid='container'></div>
+        <div data-tid='container' />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Home from './index'
-import {shallow} from 'enzyme'
+import { shallow } from 'enzyme'
 
 describe('<Home />', () => {
   it('should render correctly', () => {
