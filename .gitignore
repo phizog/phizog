@@ -68,3 +68,6 @@ app/dist
 release
 app/main.js
 app/main.js.map
+
+# tmps
+tmp
