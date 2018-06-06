@@ -1,18 +1,11 @@
-const { app, BrowserWindow } = require('electron')
-const Profiler = require('./modules/profiler')
+import { app, BrowserWindow } from 'electron'
+// const Profiler = require('./modules/profiler')
 
-let mainWindow = null
+let mainWindow: Electron.BrowserWindow
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support')
   sourceMapSupport.install()
-}
-
-if (process.env.NODE_ENV === 'development') {
-  // add node_module path to global paths
-  const path = require('path')
-  const p = path.join(__dirname, '..', 'app', 'node_modules')
-  require('module').globalPaths.push(p)
 }
 
 app.on('window-all-closed', () => {
@@ -45,17 +38,19 @@ app.on('ready', () =>
     mainWindow.loadURL(`file://${__dirname}/app.html`)
 
     mainWindow.webContents.on('did-finish-load', () => {
-      let p = new Profiler()
-      console.log(p.path)
+      // let p = new Profiler({
+      //   user_type: 'guest'
+      // })
+      // console.log(p.data)
 
       mainWindow.show()
       mainWindow.focus()
     })
 
-    mainWindow.webContents.openDevTools({
-      mode: 'bottom'
-    })
     if (process.env.NODE_ENV === 'development') {
+      mainWindow.webContents.openDevTools({
+        mode: 'bottom'
+      })
     }
   })
 )
