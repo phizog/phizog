@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron'
+import { constants } from './modules/constants'
 
-let mainWindow: Electron.BrowserWindow
+let windowObject: Electron.BrowserWindow
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support')
@@ -27,23 +28,22 @@ const installExtensions = () => {
 
 app.on('ready', () =>
   installExtensions().then(() => {
-    mainWindow = new BrowserWindow({
-      show: false,
-      width: 1024,
-      height: 728,
-      frame: false
-    })
+    const windowOptions = Object.assign(
+      constants.windows.parent,
+      constants.windows.main
+    )
+    windowObject = new BrowserWindow(windowOptions)
 
-    mainWindow.loadURL(`file://${__dirname}/app.html`)
+    windowObject.loadURL(`${constants.basePath}${windowOptions.path}`)
 
-    mainWindow.webContents.on('did-finish-load', () => {
-      mainWindow.show()
-      mainWindow.focus()
+    windowObject.webContents.on('did-finish-load', () => {
+      windowObject.show()
+      windowObject.focus()
     })
 
     if (process.env.NODE_ENV === 'development') {
-      mainWindow.webContents.openDevTools({
-        mode: 'bottom'
+      windowObject.webContents.openDevTools({
+        mode: 'detach'
       })
     }
   })
