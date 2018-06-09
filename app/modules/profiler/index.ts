@@ -1,12 +1,6 @@
 import { constants } from '../constants'
 import { readFileSync, writeFileSync } from 'fs'
-
-interface Profile {
-  user_type: 'guest' | 'authorized'
-  token?: string
-  gistId?: string
-  lastSyncDate?: Date
-}
+import { Profile } from './interfaces'
 
 /**
  * Profiler class helps to create an instance of existing profile or
@@ -27,7 +21,9 @@ export class Profiler {
     this.data = data
       ? data
       : {
-        user_type: 'guest'
+        user_type: 'guest',
+        token: '',
+        gistId: ''
       }
     this.path = path ? path : constants.profilePath
   }
