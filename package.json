@@ -42,7 +42,6 @@
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
-    "photonkit": "^0.1.2",
     "prettier": "1.13.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
