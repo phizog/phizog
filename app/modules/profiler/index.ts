@@ -1,11 +1,18 @@
 import { constants } from '../constants'
 import { readFileSync, writeFileSync } from 'fs'
 
-interface IProfile {
+type TProfile = {
   user_type: 'guest' | 'authorized'
   token?: string
   gistId?: string
   lastSyncDate?: Date
+}
+
+interface IProfiler {
+  data: TProfile
+  path: string
+  load: () => boolean
+  save: () => boolean
 }
 
 /**
@@ -14,22 +21,21 @@ interface IProfile {
  *
  * @class Profiler
  */
-export class Profiler {
+export class Profiler implements IProfiler {
   /**
    * Creates an instance of Profiler.
    * @param {string} [path=constants.profilePath]
    * @param {object} [data=Profile]
    * @memberof Profiler
    */
-  data: IProfile
+  data: TProfile
   path: string
-  constructor (data?: IProfile, path?: string) {
+  constructor (
+    data?: TProfile = { user_type: 'guest' },
+    path?: string = constants.profilePath
+  ) {
     this.data = data
-      ? data
-      : {
-        user_type: 'guest'
-      }
-    this.path = path ? path : constants.profilePath
+    this.path = path
   }
   /**
    * Load profile
