@@ -18,14 +18,14 @@ export class Profiler {
   data: Profile
   path: string
   constructor (data?: Profile, path?: string) {
-    this.data = data
-      ? data
-      : {
-        user_type: 'guest',
-        token: '',
-        gistId: ''
-      }
+    this.data = data ? data : {
+      user_type: 'guest',
+      token: ''
+    }
     this.path = path ? path : constants.profilePath
+
+    // load profile from default path if no paramter passed to the class
+    if (arguments.length === 0) this.load()
   }
   /**
    * Load profile
