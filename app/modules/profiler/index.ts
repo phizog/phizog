@@ -1,7 +1,7 @@
 import { constants } from '../constants'
 import { readFileSync, writeFileSync } from 'fs'
 
-interface Profile {
+interface IProfile {
   user_type: 'guest' | 'authorized'
   token?: string
   gistId?: string
@@ -21,9 +21,9 @@ export class Profiler {
    * @param {object} [data=Profile]
    * @memberof Profiler
    */
-  data: Profile
+  data: IProfile
   path: string
-  constructor (data?: Profile, path?: string) {
+  constructor (data?: IProfile, path?: string) {
     this.data = data
       ? data
       : {
