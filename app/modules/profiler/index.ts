@@ -60,4 +60,7 @@ export class Profiler {
       throw error
     }
   }
+  isValidate (data: Profile = this.data): data is Profile {
+    return data.token.length > 0 ? true : false
+  }
 }
