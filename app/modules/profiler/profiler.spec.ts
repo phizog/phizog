@@ -2,16 +2,18 @@
 import { constants } from '../constants'
 import { Profiler } from './index'
 import { join } from 'path'
+import { existsSync } from 'fs'
 
 describe('Profiler', () => {
   let instance: Profiler
+  let profilePath = join(__dirname, '..', '..', '..', 'tmp')
 
   it('Check instance is type of Profiler', () => {
     instance = new Profiler(
       {
         user_type: 'guest'
       },
-      join(__dirname, '..', '..', '..', 'tmp')
+      profilePath
     )
     expect(instance).toBeInstanceOf(Profiler)
   })
@@ -22,7 +24,7 @@ describe('Profiler', () => {
         user_type: 'guest',
         token: 'blah blah blah'
       },
-      join(__dirname, '..', '..', '..', 'tmp')
+      profilePath
     )
     expect(instance.save()).toBe(true)
   })
@@ -35,7 +37,7 @@ describe('Profiler', () => {
         gistId: 'asd2342fsdvd3s7',
         lastSyncDate: new Date()
       },
-      join(__dirname, '..', '..', '..', 'tmp')
+      profilePath
     )
     expect(instance.save()).toBe(true)
   })
@@ -46,8 +48,19 @@ describe('Profiler', () => {
         user_type: 'authorized',
         token: 'asdfasdfa'
       },
-      join(__dirname, '..', '..', '..', 'tmp')
+      profilePath
     )
     expect(instance.load()).toBe(true)
+  })
+
+  it(`create new profile while the profile path doesn't exist`, () => {
+    instance = new Profiler(
+      {
+        user_type: 'guest'
+      },
+      profilePath
+    )
+    instance.load()
+    expect(existsSync(profilePath)).toBe(true)
   })
 })

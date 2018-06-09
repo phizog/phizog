@@ -42,7 +42,12 @@ export class Profiler {
       this.data = JSON.parse(readFileSync(this.path, 'utf8'))
       return true
     } catch (error) {
-      throw error
+      switch (error.code) {
+        case 'ENOENT':
+          return this.save()
+        default:
+          throw error
+      }
     }
   }
   /**
