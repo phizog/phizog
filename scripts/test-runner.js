@@ -1,5 +1,6 @@
 const spawn = require('cross-spawn')
 const path = require('path')
+const { exec } = require('child_process')
 
 // regex pattern to extract test files
 const result = spawn.sync(
@@ -8,4 +9,8 @@ const result = spawn.sync(
   { stdio: 'inherit' }
 )
 
-process.exit(result.status)
+// remove temporary files after finishing process
+exec('rm $PWD/tmp', (error, stdout, stderr) => {
+  if (error) throw error
+  process.exit(result.status)
+})
