@@ -1,6 +1,14 @@
 import { constants } from '../constants'
 import { readFileSync, writeFileSync } from 'fs'
-import { IProfile } from './interfaces'
+import axios, { AxiosError } from 'axios'
+import { messageSerializer } from '../util'
+
+export interface IProfile {
+  user_type: 'guest' | 'authorized'
+  token: string
+  gistId?: string
+  lastSyncDate?: Date
+}
 
 /**
  * Profiler class helps to create an instance of existing profile or
@@ -62,7 +70,31 @@ export class Profiler {
       throw error
     }
   }
+  /**
+   * Validate profile data object if token exist and it's length is more than 0
+   *
+   * @param {IProfile} [data=this.data]
+   * @returns {data is IProfile}
+   * @memberof Profiler
+   */
   isValidate (data: IProfile = this.data): data is IProfile {
     return data.token.length > 0 ? true : false
+  }
+  /**
+   *
+   *
+   * @returns {Promise<void>}
+   * @memberof Profiler
+   */
+  async authorizeRequest (): Promise<void> {
+    try {
+      const req = await axios.get(constants.oauth.url, {
+        params: constants.oauth.parameters
+      })
+      return messageSerializer(req.status, req.data)
+    } catch (error) {
+      let err: AxiosError = error
+      return messageSerializer(err.request.res.statusCode)
+    }
   }
 }
