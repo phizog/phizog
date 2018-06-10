@@ -29,5 +29,15 @@ export const constants = {
       height: 400,
       path: '#login'
     }
+  },
+  oauth: {
+    hostname: 'github.com',
+    path: 'login/oauth/authorize',
+    parameters: {
+      clientId: '6ed184fcdf90a8ab84d6', // Phizog OAuth client id, created by owners
+      callback: 'https://phizog.github.io',
+      scope: 'gist',
+      allowSignup: true
+    }
   }
 }

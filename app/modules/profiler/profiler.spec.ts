@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import { constants } from '../constants'
 import { Profiler } from './index'
 import { join } from 'path'
 import { existsSync } from 'fs'
@@ -11,7 +10,8 @@ describe('Profiler', () => {
   it('Check instance is type of Profiler', () => {
     instance = new Profiler(
       {
-        user_type: 'guest'
+        user_type: 'guest',
+        token: ''
       },
       profilePath
     )
@@ -46,7 +46,7 @@ describe('Profiler', () => {
     instance = new Profiler(
       {
         user_type: 'authorized',
-        token: 'asdfasdfa'
+        token: 'blah'
       },
       profilePath
     )
@@ -56,7 +56,8 @@ describe('Profiler', () => {
   it(`create new profile while the profile path doesn't exist`, () => {
     instance = new Profiler(
       {
-        user_type: 'guest'
+        user_type: 'guest',
+        token: ''
       },
       profilePath
     )

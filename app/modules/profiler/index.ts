@@ -1,19 +1,6 @@
 import { constants } from '../constants'
 import { readFileSync, writeFileSync } from 'fs'
-
-type TProfile = {
-  user_type: 'guest' | 'authorized'
-  token?: string
-  gistId?: string
-  lastSyncDate?: Date
-}
-
-interface IProfiler {
-  data: TProfile
-  path: string
-  load: () => boolean
-  save: () => boolean
-}
+import { TProfile, IProfiler } from './interfaces'
 
 /**
  * Profiler class helps to create an instance of existing profile or
@@ -24,18 +11,16 @@ interface IProfiler {
 export class Profiler implements IProfiler {
   /**
    * Creates an instance of Profiler.
+   * @param {object} [data=IProfile]
    * @param {string} [path=constants.profilePath]
-   * @param {object} [data=Profile]
    * @memberof Profiler
    */
   data: TProfile
   path: string
-  constructor (
-    data?: TProfile = { user_type: 'guest' },
-    path?: string = constants.profilePath
-  ) {
-    this.data = data
-    this.path = path
+  constructor (data: TProfile, path: string) {
+    this.data = data || { user_type: 'guest', token: '' }
+    this.path = path || constants.profilePath
+    if (arguments.length === 0) this.load()
   }
   /**
    * Load profile
@@ -69,5 +54,8 @@ export class Profiler implements IProfiler {
     } catch (error) {
       throw error
     }
+  }
+  isValidate (data: IProfile = this.data): data is IProfile {
+    return data.token.length > 0
   }
 }
