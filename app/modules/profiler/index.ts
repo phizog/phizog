@@ -67,7 +67,7 @@ export class Profiler implements IProfiler {
     return data.token.length > 0
   }
   /**
-   *
+   * Return Github login page
    *
    * @returns {Promise<void>}
    * @memberof Profiler
