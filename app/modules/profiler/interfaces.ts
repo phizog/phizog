@@ -10,4 +10,6 @@ export interface IProfiler {
   path: string
   load: () => boolean
   save: () => boolean
+  isValidate: (data: TProfile) => data is TProfile
+  authorizeRequest: () => Promise<void>
 }
