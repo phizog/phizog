@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "description": "Socket API Development Environment",
   "main": "main.js",
-  "dependencies": {},
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "flexboxgrid": "^6.3.1"
+  },
   "devDependencies": {
+    "@types/classnames": "^2.2.4",
     "@types/electron": "^1.6.10",
     "@types/enzyme": "^3.1.10",
     "@types/jest": "^22.2.3",
@@ -38,7 +42,6 @@
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
-    "photonkit": "^0.1.2",
     "prettier": "1.13.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -66,6 +69,7 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test node --trace-warnings ./scripts/test-runner.js",
+    "test:watch": "cross-env NODE_ENV=test WATCH_MODE=true node --trace-warnings ./scripts/test-runner.js --watch",
     "test:coverage": "jest --coverage --maxWorkers=4",
     "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 server.js",
     "build-main": "cross-env NODE_ENV=production webpack --config webpack.config.electron.js --progress --profile --colors",

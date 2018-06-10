@@ -1,6 +1,6 @@
 import { constants } from '../constants'
 import { readFileSync, writeFileSync } from 'fs'
-import { Profile } from './interfaces'
+import { IProfile } from './interfaces'
 
 /**
  * Profiler class helps to create an instance of existing profile or
@@ -11,13 +11,13 @@ import { Profile } from './interfaces'
 export class Profiler {
   /**
    * Creates an instance of Profiler.
+   * @param {object} [data=IProfile]
    * @param {string} [path=constants.profilePath]
-   * @param {object} [data=Profile]
    * @memberof Profiler
    */
-  data: Profile
+  data: IProfile
   path: string
-  constructor (data?: Profile, path?: string) {
+  constructor (data?: IProfile, path?: string) {
     this.data = data
       ? data
       : {
@@ -62,7 +62,7 @@ export class Profiler {
       throw error
     }
   }
-  isValidate (data: Profile = this.data): data is Profile {
+  isValidate (data: IProfile = this.data): data is IProfile {
     return data.token.length > 0 ? true : false
   }
 }

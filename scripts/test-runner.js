@@ -1,11 +1,12 @@
 const spawn = require('cross-spawn')
 const path = require('path')
 const { exec } = require('child_process')
+const {env} = process
 
 // regex pattern to extract test files
 const result = spawn.sync(
   path.normalize('./node_modules/jest/bin/jest.js'),
-  ['--maxWorkers=4'],
+  ['--maxWorkers=4', env.WATCH_MODE ? '--watch' : ''],
   { stdio: 'inherit' }
 )
 
