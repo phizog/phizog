@@ -1,40 +1,26 @@
 import { constants } from '../constants'
 import { readFileSync, writeFileSync } from 'fs'
+import { TProfile, IProfiler } from './interfaces'
 import axios, { AxiosError } from 'axios'
 import { messageSerializer } from '../util'
-
-export interface IProfile {
-  user_type: 'guest' | 'authorized'
-  token: string
-  gistId?: string
-  lastSyncDate?: Date
-}
-
 /**
  * Profiler class helps to create an instance of existing profile or
  * logged in user and expose it as an global object to the electron app
  *
  * @class Profiler
  */
-export class Profiler {
+export class Profiler implements IProfiler {
   /**
    * Creates an instance of Profiler.
-   * @param {object} [data=IProfile]
+   * @param {object} [data=TProfile]
    * @param {string} [path=constants.profilePath]
    * @memberof Profiler
    */
-  data: IProfile
+  data: TProfile
   path: string
-  constructor (data?: IProfile, path?: string) {
-    this.data = data
-      ? data
-      : {
-        user_type: 'guest',
-        token: ''
-      }
-    this.path = path ? path : constants.profilePath
-
-    // load profile from default path if no paramter passed to the class
+  constructor (data: TProfile, path: string) {
+    this.data = data || { user_type: 'guest', token: '' }
+    this.path = path || constants.profilePath
     if (arguments.length === 0) this.load()
   }
   /**
@@ -77,8 +63,8 @@ export class Profiler {
    * @returns {data is IProfile}
    * @memberof Profiler
    */
-  isValidate (data: IProfile = this.data): data is IProfile {
-    return data.token.length > 0 ? true : false
+  isValidate (data: TProfile = this.data): data is TProfile {
+    return data.token.length > 0
   }
   /**
    *
