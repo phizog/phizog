@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.4",
+    "@types/core-js": "^2.5.0",
     "@types/electron": "^1.6.10",
     "@types/enzyme": "^3.1.10",
     "@types/jest": "^22.2.3",
@@ -23,6 +24,7 @@
     "@types/redux-logger": "^3.0.6",
     "@types/typescript": "^2.0.0",
     "awesome-typescript-loader": "^5.0.0",
+    "axios": "^0.18.0",
     "cross-env": "^5.1.6",
     "css-loader": "^0.28.11",
     "electron": "^2.0.2",
