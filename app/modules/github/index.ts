@@ -1,5 +1,4 @@
-import axios, { AxiosInstance, AxiosError } from 'axios'
-import { messageSerializer } from '../util'
+import axios, { AxiosInstance } from 'axios'
 import { constants } from '../constants'
 
 export class Github {
@@ -10,11 +9,9 @@ export class Github {
    */
   private token: string
   private axios: AxiosInstance
-  private apiPath: string
   constructor () {
-    this.apiPath = constants.api.basePath
     this.axios = axios.create({
-      baseURL: this.apiPath
+      baseURL: constants.api.basePath
     })
   }
   setToken (token: string): void {
