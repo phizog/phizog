@@ -38,5 +38,8 @@ export const constants = {
       scope: 'gist',
       allow_signup: true
     }
+  },
+  api: {
+    basePath: 'https://api.github.com'
   }
 }
