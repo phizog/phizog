@@ -1,10 +1,9 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosInstance, AxiosPromise } from 'axios'
 import { constants } from '../constants'
 
 export class Github {
   /**
    * Creates an instance of Github.
-   * @param {string} token
    * @memberof Github
    */
   private token: string
@@ -21,5 +20,8 @@ export class Github {
 
       return config
     })
+  }
+  ping (): AxiosPromise {
+    return this.axios.get('/gists/starred')
   }
 }
