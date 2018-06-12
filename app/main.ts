@@ -33,7 +33,7 @@ app.on('ready', () =>
 
     const windowOptions = Object.assign(
       constants.windows.parent,
-      (await profile.pingtoken())
+      (await profile.pingtoken()) // check token is valid and didn't expire
         ? constants.windows.main
         : constants.windows.login
     )

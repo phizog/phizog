@@ -94,6 +94,12 @@ export class Profiler implements IProfiler {
       return messageSerializer(err.request.res.statusCode)
     }
   }
+  /**
+   * validate the profile token by calling github module method.
+   *
+   * @returns {Promise<boolean>}
+   * @memberof Profiler
+   */
   async pingtoken (): Promise<boolean> {
     try {
       const req = await this.github.ping()
