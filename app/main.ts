@@ -27,10 +27,11 @@ const installExtensions = () => {
   return Promise.resolve([])
 }
 
+// create profiler instance
+let profile = new Profiler()
+
 app.on('ready', () =>
   installExtensions().then(async () => {
-    let profile = new Profiler()
-
     const windowOptions = Object.assign(
       constants.windows.parent,
       (await profile.pingtoken()) // check token is valid and didn't expire
