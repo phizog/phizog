@@ -14,6 +14,6 @@ export interface IProfiler {
   load: () => boolean
   save: () => boolean
   isValid: (data: TProfile) => data is TProfile
-  pingtoken: () => Promise<void>
+  pingtoken: () => Promise<boolean>
   authorizeRequest: () => Promise<void>
 }

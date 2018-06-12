@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron'
 import { constants } from './modules/constants'
+import { Profiler } from './modules/profiler'
 
 let windowObject: Electron.BrowserWindow
 
@@ -27,10 +28,14 @@ const installExtensions = () => {
 }
 
 app.on('ready', () =>
-  installExtensions().then(() => {
+  installExtensions().then(async () => {
+    let profile = new Profiler()
+
     const windowOptions = Object.assign(
       constants.windows.parent,
-      constants.windows.main
+      (await profile.pingtoken())
+        ? constants.windows.main
+        : constants.windows.login
     )
     windowObject = new BrowserWindow(windowOptions)
 

@@ -3,6 +3,8 @@ import { readFileSync, writeFileSync } from 'fs'
 import { TProfile, IProfiler } from './interfaces'
 import axios, { AxiosError } from 'axios'
 import { messageSerializer } from '../util'
+import { Github } from '../github'
+
 /**
  * Profiler class helps to create an instance of existing profile or
  * logged in user and expose it as an global object to the electron app
@@ -16,12 +18,21 @@ export class Profiler implements IProfiler {
    * @param {string} [path=constants.profilePath]
    * @memberof Profiler
    */
-  data: TProfile
   path: string
-  constructor (data: TProfile, path: string) {
+  github: Github
+  private _data: TProfile
+  constructor (data?: TProfile, path?: string) {
     this.data = data || { user_type: 'guest', token: '' }
     this.path = path || constants.profilePath
     if (arguments.length === 0) this.load()
+  }
+  public get data (): TProfile {
+    return this._data
+  }
+  public set data (newData: TProfile) {
+    this._data = newData
+    this.github = new Github()
+    this.github.setToken(this.data.token)
   }
   /**
    * Load profile
@@ -63,11 +74,11 @@ export class Profiler implements IProfiler {
    * @returns {data is IProfile}
    * @memberof Profiler
    */
-  isValidate (data: TProfile = this.data): data is TProfile {
+  isValid (data: TProfile = this.data): data is TProfile {
     return data.token.length > 0
   }
   /**
-   * Return Github login page
+   * Return Github oauth login page
    *
    * @returns {Promise<void>}
    * @memberof Profiler
@@ -81,6 +92,14 @@ export class Profiler implements IProfiler {
     } catch (error) {
       let err: AxiosError = error
       return messageSerializer(err.request.res.statusCode)
+    }
+  }
+  async pingtoken (): Promise<boolean> {
+    try {
+      const req = await this.github.ping()
+      return req.status === 200
+    } catch (error) {
+      return false
     }
   }
 }
