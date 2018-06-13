@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { constants } from './modules/constants'
 import { Profiler } from './modules/profiler'
 
@@ -54,3 +54,7 @@ app.on('ready', () =>
     }
   })
 )
+
+ipcMain.on('getProfile', (event: any) => {
+  event.returnedValue = profile
+})
