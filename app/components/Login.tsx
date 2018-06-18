@@ -1,17 +1,10 @@
 import * as React from 'react'
-import { ipcRenderer, remote } from 'electron'
-import { IProfiler } from '../modules/profiler/interfaces'
+import { remote } from 'electron'
 import { constants } from '../modules/constants'
-interface ILoginStates {
-  profile: IProfiler
-}
 
-export default class Login extends React.Component<any, ILoginStates> {
+export default class Login extends React.Component<any> {
   constructor (props: any) {
     super(props)
-    this.state = {
-      profile: ipcRenderer.sendSync('getProfile')
-    }
   }
   render () {
     let win = remote.getCurrentWindow()
