@@ -32,20 +32,10 @@ let profile = new Profiler()
 
 app.on('ready', () =>
   installExtensions().then(async () => {
-    const windowOptions = Object.assign(
-      constants.windows.parent,
-      (await profile.pingtoken()) // check token is valid and didn't expire
-        ? constants.windows.main
-        : constants.windows.login
-    )
+    const windowOptions = Object.assign(constants.windows.parent, constants.windows.login)
     windowObject = new BrowserWindow(windowOptions)
 
     windowObject.loadURL(`${constants.basePath}${windowOptions.path}`)
-
-    windowObject.webContents.on('did-finish-load', () => {
-      windowObject.show()
-      windowObject.focus()
-    })
 
     if (process.env.NODE_ENV === 'development') {
       windowObject.webContents.openDevTools({
@@ -56,5 +46,15 @@ app.on('ready', () =>
 )
 
 ipcMain.on('getProfile', (event: any) => {
-  event.returnedValue = profile
+  event.returnValue = profile
+})
+
+ipcMain.on('showWindow', (event: any) => {
+  try {
+    windowObject.show()
+    windowObject.focus()
+    event.returnValue = true
+  } catch (error) {
+    event.returnValue = error
+  }
 })

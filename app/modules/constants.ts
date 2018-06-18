@@ -27,6 +27,8 @@ export const constants = {
     login: {
       width: 300,
       height: 400,
+      maxWidth: 300,
+      maxHeight: 400,
       path: '#login'
     }
   },
