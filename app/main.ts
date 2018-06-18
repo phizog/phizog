@@ -32,7 +32,10 @@ let profile = new Profiler()
 
 app.on('ready', () =>
   installExtensions().then(async () => {
-    const windowOptions = Object.assign(constants.windows.parent, constants.windows.login)
+    const windowOptions = Object.assign(
+      constants.windows.parent,
+      constants.windows.login
+    )
     windowObject = new BrowserWindow(windowOptions)
 
     windowObject.loadURL(`${constants.basePath}${windowOptions.path}`)
