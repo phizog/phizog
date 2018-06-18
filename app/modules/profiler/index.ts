@@ -22,9 +22,9 @@ export class Profiler implements IProfiler {
   github: Github
   private _data: TProfile
   constructor (data?: TProfile, path?: string) {
+    this.github = new Github()
     this.data = data || { user_type: 'guest', token: '' }
     this.path = path || constants.profilePath
-    this.github = new Github()
     if (arguments.length === 0) this.load()
   }
   public get data (): TProfile {
