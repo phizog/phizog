@@ -22,13 +22,13 @@ export const constants = {
     main: {
       width: 1024,
       height: 768,
-      path: '#'
+      path: '#',
+      resizable: true
     },
     login: {
       width: 300,
       height: 400,
-      maxWidth: 300,
-      maxHeight: 400,
+      resizable: false,
       path: '#login'
     }
   },
