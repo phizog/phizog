@@ -1,6 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import { constants } from './modules/constants'
-import { Profiler } from './modules/profiler'
 
 let windowObject: Electron.BrowserWindow
 
@@ -27,9 +26,6 @@ const installExtensions = () => {
   return Promise.resolve([])
 }
 
-// create profiler instance
-let profile = new Profiler()
-
 app.on('ready', () =>
   installExtensions().then(async () => {
     const windowOptions = Object.assign(
@@ -47,10 +43,6 @@ app.on('ready', () =>
     }
   })
 )
-
-ipcMain.on('getProfile', (event: any) => {
-  event.returnValue = profile
-})
 
 ipcMain.on('showWindow', (event: any) => {
   try {
