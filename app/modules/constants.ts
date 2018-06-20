@@ -42,6 +42,6 @@ export const constants = {
     }
   },
   api: {
-    basePath: 'https://api.github.com'
+    baseURL: 'https://api.github.com'
   }
 }

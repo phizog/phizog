@@ -1,17 +1,18 @@
 import axios, { AxiosInstance, AxiosPromise } from 'axios'
 import { constants } from '../constants'
+import { IGithub } from './interfaces'
 
-export class Github {
+export class Github implements IGithub {
   /**
    * Creates an instance of Github.
    * @memberof Github
    */
-  private token: string
-  private axios: AxiosInstance
+  token: string
+  axios: AxiosInstance
   constructor () {
     // create an instance from axios module and customize it
     this.axios = axios.create({
-      baseURL: constants.api.basePath
+      baseURL: constants.api.baseURL
     })
   }
   /**
@@ -21,12 +22,12 @@ export class Github {
    * @memberof Github
    */
   setToken (token: string): void {
-    this.token = token
     this.axios.interceptors.request.use(config => {
-      config.headers['Authorization'] = `token ${this.token}`
+      config.headers['Authorization'] = `token ${token}`
 
       return config
     })
+    this.token = token
   }
   /**
    * return an promise request object which return starred gists of user.
