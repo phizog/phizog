@@ -1,7 +1,6 @@
 import { Github } from './index'
 import { IGithub } from './interfaces'
 import { constants } from '../constants'
-import { AxiosPromise } from 'axios'
 
 describe('Github', () => {
   let instance: IGithub
