@@ -15,7 +15,7 @@ export class Profiler implements IProfiler {
   /**
    * Creates an instance of Profiler.
    * @param {object} [data=TProfile]
-   * @param {string} [path=constants.profilePath]
+   * @param {string} [path=constants.profile.path]
    * @memberof Profiler
    */
   path: string
@@ -24,7 +24,7 @@ export class Profiler implements IProfiler {
   constructor (data?: TProfile, path?: string) {
     this.github = new Github()
     this.data = data || { user_type: 'guest', token: '' }
-    this.path = path || constants.profilePath
+    this.path = path || constants.profile.path
     if (arguments.length === 0) this.load()
   }
   public get data (): TProfile {

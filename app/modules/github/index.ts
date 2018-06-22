@@ -1,6 +1,6 @@
-import axios, { AxiosInstance, AxiosPromise } from 'axios'
+import axios, { AxiosInstance, AxiosPromise, AxiosResponse } from 'axios'
 import { constants } from '../constants'
-import { IGithub } from './interfaces'
+import { IGithub, IFile } from './interfaces'
 
 export class Github implements IGithub {
   /**
@@ -30,7 +30,7 @@ export class Github implements IGithub {
     this.token = token
   }
   /**
-   * return an promise request object which return starred gists of user.
+   * return a promise request object which return starred gists of user.
    * In other words, this method act like a ping method which helps to
    * understand Github OAuth token is valid or not
    *
@@ -40,4 +40,120 @@ export class Github implements IGithub {
   ping (): AxiosPromise {
     return this.axios.get('/gists/starred')
   }
+  /**
+   * return a promise post request object which will create new gist according
+   * to the passed files object
+   *
+   * @param {IFile} files
+   * @returns {AxiosPromise}
+   * @memberof Github
+   */
+  createGist (files: IFile): AxiosPromise {
+    return this.axios.post('/gists', gistBodyCreator(files))
+  }
+  /**
+   * return a promise GET request object which will download the specifid gist
+   *
+   * @param {string} id
+   * @returns {AxiosPromise}
+   * @memberof Github
+   */
+  downloadGist (id?: string): AxiosPromise {
+    if (id) return this.axios.get(`/gists/${id}`)
+    else return this.findGist()
+  }
+  /**
+   * finding phizog's profile gist in list of user's gists. this method use
+   * recursive concept to search between gists.
+   *
+   * @param {number} page
+   * @returns {Promise}
+   * @memberof Github
+   */
+  findGist (page: number = 1): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.axios
+        .get(`/gists`, {
+          params: {
+            per_page: 100,
+            page: page
+          }
+        })
+        .then(res => resolve(this.gistExtractor(res)))
+        .catch(err => {
+          reject(err)
+        })
+    })
+  }
+  /**
+   * recursive method which will iterate Github response data list and extract
+   * the specified gist object
+   *
+   * @param {AxiosResponse} res
+   * @returns {object}
+   * @memberof Github
+   */
+  gistExtractor (res: AxiosResponse): object {
+    let result: object = {}
+    for (const gist of res.data) {
+      if (constants.profile.filename in gist['files']) {
+        result = gist
+        break
+      } else {
+        if ('link' in res.headers) {
+          let pagination = parseLinkHeader(res.headers.link)
+          if ('rel="next"' in pagination) {
+            let url = new URL(pagination['rel="next"'])
+            let nextPage: string | any = url.searchParams.get('page')
+            this.findGist(parseInt(nextPage, 10))
+              .then((res: AxiosResponse) => {
+                result = this.gistExtractor(res)
+              })
+              .catch(err => {
+                throw err
+              })
+          }
+        }
+      }
+    }
+
+    return result
+  }
+}
+
+/**
+ * prepare post body to create new gist
+ *
+ * @param {IFile} files
+ * @returns {Object}
+ */
+const gistBodyCreator = (files: IFile) => ({
+  public: false,
+  description: 'test - phizog',
+  files: files
+})
+
+/**
+ * return pagination object
+ *
+ * @param {string} linksStr
+ * @returns {Object}
+ */
+const parseLinkHeader: any = (linksStr: string) => {
+  if (linksStr.length === 0) throw new Error('input must not be of zero length')
+
+  let parts = linksStr.split(',')
+  let links: any = {}
+
+  for (let i = 0; i < parts.length; i++) {
+    let section = parts[i].split(';')
+    if (section.length !== 2) {
+      throw new Error("section could not be split on ';'")
+    }
+
+    links[section[0].replace(/<(.*)>/, '$1').trim()] = section[1]
+      .replace(/rel="(.*)"/, '$1')
+      .trim()
+  }
+  return links
 }

@@ -7,8 +7,10 @@ import { join } from 'path'
 let currentApp = isRenderer ? remote.app : app
 
 export const constants = {
-  profilePath: join(currentApp.getPath('userData'), 'phizog.json'),
-  profileTemplatePath: join(__dirname, '..', 'resources', 'phizog.json'),
+  profile: {
+    filename: 'phizog.json',
+    path: join(currentApp.getPath('userData'), 'phizog.json')
+  },
   basePath: `file://${join(__dirname, '.')}/app.html`,
   windows: {
     /* Note: the path parameter MUST be a hashbang format, Because of some
