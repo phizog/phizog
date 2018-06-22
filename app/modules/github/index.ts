@@ -129,7 +129,7 @@ export class Github implements IGithub {
  */
 const gistBodyCreator = (files: IFile) => ({
   public: false,
-  description: 'test - phizog',
+  description: 'Phizog - Profile File',
   files: files
 })
 
