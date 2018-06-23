@@ -63,6 +63,16 @@ export class Github implements IGithub {
     else return this.findGist()
   }
   /**
+   * return a promise GET request object which will delete the specifid gist
+   *
+   * @param {string} id
+   * @returns {AxiosPromise}
+   * @memberof Github
+   */
+  deleteGist (id: string): AxiosPromise {
+    return this.axios.delete(`/gists/${id}`)
+  }
+  /**
    * finding phizog's profile gist in list of user's gists. this method use
    * recursive concept to search between gists.
    *
@@ -114,12 +124,12 @@ export class Github implements IGithub {
             let nextPage: string | any = url.searchParams.get('page')
 
             this.findGist(parseInt(nextPage, 10))
-            .then((res: AxiosResponse) => {
-              this.gistExtractor(res)
-                .then(res => resolve(res))
-                .catch(err => reject(err))
-            })
-            .catch(err => reject(err))
+              .then((res: AxiosResponse) => {
+                this.gistExtractor(res)
+                  .then(res => resolve(res))
+                  .catch(err => reject(err))
+              })
+              .catch(err => reject(err))
           }
         }
       } else {
