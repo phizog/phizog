@@ -7,6 +7,9 @@ import { join } from 'path'
 let currentApp = isRenderer ? remote.app : app
 
 export const constants = {
+  meta: {
+    title: 'Phizog'
+  },
   profile: {
     filename: 'phizog.json',
     path: join(currentApp.getPath('userData'), 'phizog.json')
