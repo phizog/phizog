@@ -41,7 +41,7 @@ export class Github implements IGithub {
     return this.axios.get('/gists/starred')
   }
   /**
-   * return a promise post request object which will create new gist according
+   * return a promise POST request object which will create new gist according
    * to the passed files object
    *
    * @param {IFile} files
@@ -63,7 +63,7 @@ export class Github implements IGithub {
     else return this.findGist()
   }
   /**
-   * return a promise GET request object which will delete the specifid gist
+   * return a promise DELETE request object which will delete the specifid gist
    *
    * @param {string} id
    * @returns {AxiosPromise}
@@ -71,6 +71,17 @@ export class Github implements IGithub {
    */
   deleteGist (id: string): AxiosPromise {
     return this.axios.delete(`/gists/${id}`)
+  }
+  /**
+   * return a promise PATCH request object which will update the specifid gist
+   *
+   * @param {string} id
+   * @param {IFile} files
+   * @returns {AxiosPromise}
+   * @memberof Github
+   */
+  updateGist (id: string, files: IFile): AxiosPromise {
+    return this.axios.patch(`/gists/${id}`, gistBodyCreator(files))
   }
   /**
    * finding phizog's profile gist in list of user's gists. this method use

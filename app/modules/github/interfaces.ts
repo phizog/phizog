@@ -8,6 +8,7 @@ export interface IGithub {
   createGist: (files: IFile) => AxiosPromise
   downloadGist: (id?: string) => AxiosPromise
   deleteGist: (id: string) => AxiosPromise
+  updateGist: (id: string, files: IFile) => AxiosPromise
   findGist: (page: number) => Promise<any>
   gistExtractor: (res: AxiosResponse) => Promise<any>
 }
