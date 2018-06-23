@@ -79,45 +79,53 @@ export class Github implements IGithub {
             page: page
           }
         })
-        .then(res => resolve(this.gistExtractor(res)))
+        .then(res => {
+          this.gistExtractor(res)
+            .then(res => resolve(res))
+            .catch(err => reject(err))
+        })
         .catch(err => {
           reject(err)
         })
     })
   }
   /**
-   * recursive method which will iterate Github response data list and extract
-   * the specified gist object
+   * recursive promise method which will iterate Github response data list and
+   * resolve the specified gist object
    *
    * @param {AxiosResponse} res
-   * @returns {object}
+   * @returns {Promise}
    * @memberof Github
    */
-  gistExtractor (res: AxiosResponse): object {
-    let result: object = {}
-    for (const gist of res.data) {
-      if (constants.profile.filename in gist['files']) {
-        result = gist
-        break
-      } else {
-        if ('link' in res.headers) {
-          let pagination = parseLinkHeader(res.headers.link)
-          if ('rel="next"' in pagination) {
-            let url = new URL(pagination['rel="next"'])
-            let nextPage: string | any = url.searchParams.get('page')
-            this.findGist(parseInt(nextPage, 10))
-              .then((res: AxiosResponse) => {
-                result = this.gistExtractor(res)
-              })
-              .catch(err => {
-                throw err
-              })
+  gistExtractor (res: AxiosResponse): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (res.hasOwnProperty('data')) {
+        for (const gist of res.data) {
+          if (constants.profile.filename in gist['files']) {
+            return resolve(gist)
           }
         }
-      }
-    }
 
-    return result
+        if ('link' in res.headers) {
+          let pagination = parseLinkHeader(res.headers.link)
+
+          if ('next' in pagination) {
+            let url = new URL(pagination['next'])
+            let nextPage: string | any = url.searchParams.get('page')
+
+            this.findGist(parseInt(nextPage, 10))
+            .then((res: AxiosResponse) => {
+              this.gistExtractor(res)
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+            })
+            .catch(err => reject(err))
+          }
+        }
+      } else {
+        return resolve(res)
+      }
+    })
   }
 }
 
@@ -129,7 +137,7 @@ export class Github implements IGithub {
  */
 const gistBodyCreator = (files: IFile) => ({
   public: false,
-  description: 'Phizog - Profile File',
+  description: `${constants.meta.title} - Profile File`,
   files: files
 })
 
@@ -151,8 +159,8 @@ const parseLinkHeader: any = (linksStr: string) => {
       throw new Error("section could not be split on ';'")
     }
 
-    links[section[0].replace(/<(.*)>/, '$1').trim()] = section[1]
-      .replace(/rel="(.*)"/, '$1')
+    links[section[1].replace(/rel="(.*)"/, '$1').trim()] = section[0]
+      .replace(/<(.*)>/, '$1')
       .trim()
   }
   return links
