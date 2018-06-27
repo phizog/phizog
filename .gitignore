@@ -71,3 +71,7 @@ app/main.js.map
 
 # tmps
 tmp
+
+.vs
+.vscode
+.idea
