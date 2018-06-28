@@ -2,7 +2,7 @@ import * as React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { configureStore, history } from './store/configureStore'
-import Root from './containers/Root'
+import Root from './components/Root'
 
 const store = configureStore()
 
@@ -14,8 +14,8 @@ render(
 )
 
 if ((module as any).hot) {
-  (module as any).hot.accept('./containers/Root', () => {
-    const NextRoot = require('./containers/Root').default
+  (module as any).hot.accept('./components/Root', () => {
+    const NextRoot = require('./components/Root').default
     render(
       <AppContainer>
         <NextRoot store={store} history={history} />
