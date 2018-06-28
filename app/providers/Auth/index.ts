@@ -17,11 +17,10 @@ export class Auth extends React.Component<IAuthProps, IAuthState> {
 
   render () {
     const {
-      state: { profile },
+      state,
       props: { children }
     } = this
-    if (!children || typeof children !== 'function') return null
-
-    return children(profile)
+    if (!children || typeof children !== 'object') return null
+    return React.cloneElement(children, state)
   }
 }
