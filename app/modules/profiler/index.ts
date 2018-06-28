@@ -105,7 +105,7 @@ export class Profiler implements IProfiler {
       const req = await this.github.ping()
       return req.status === 200
     } catch (error) {
-      return false
+      throw new Error(error)
     }
   }
 }
