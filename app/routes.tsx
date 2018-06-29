@@ -13,16 +13,18 @@ import Home from './components/Home'
 class Router extends React.Component<any> {
   render () {
     return (
-      <Switch>
-        <Route
-          path='/login'
-          render={(props: any) => <Login {...this.props} {...props} />}
-        />
-        <Route
-          path='/'
-          render={(props: any) => <Home {...this.props} {...props} />}
-        />
-      </Switch>
+      <div className='window'>
+        <Switch>
+          <Route
+            path='/login'
+            render={(props: any) => <Login {...this.props} {...props} />}
+          />
+          <Route
+            path='/'
+            render={(props: any) => <Home {...this.props} {...props} />}
+          />
+        </Switch>
+      </div>
     )
   }
 }
