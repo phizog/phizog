@@ -23,9 +23,9 @@ export class Profiler implements IProfiler {
   private _data: TProfile
   constructor (data?: TProfile, path?: string) {
     this.github = new Github()
-    this.data = data || { user_type: 'guest', token: '' }
     this.path = path || constants.profile.path
     if (arguments.length === 0) this.load()
+    else this.data = data || { user_type: 'guest', token: '' }
   }
   public get data (): TProfile {
     return this._data
