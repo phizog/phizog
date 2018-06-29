@@ -12,7 +12,7 @@ export interface IProfiler {
   path: string
   github: Github
   load: () => boolean
-  save: () => boolean
+  save: (data: TProfile) => boolean
   isValid: (data: TProfile) => data is TProfile
   pingtoken: () => Promise<boolean>
   authorizeRequest: () => Promise<void>

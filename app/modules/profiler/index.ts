@@ -47,7 +47,7 @@ export class Profiler implements IProfiler {
     } catch (error) {
       switch (error.code) {
         case 'ENOENT':
-          return this.save()
+          return this.save({ user_type: 'guest', token: '' })
         default:
           throw error
       }
@@ -56,12 +56,14 @@ export class Profiler implements IProfiler {
   /**
    * write profile on disc
    *
+   * @param {TProfile} [data]
    * @returns {void}
    * @memberof Profiler
    */
-  save (): boolean {
+  save (data: TProfile): boolean {
     try {
-      writeFileSync(this.path, JSON.stringify(this.data))
+      this.data = data
+      writeFileSync(this.path, JSON.stringify(data))
       return true
     } catch (error) {
       throw error
@@ -70,7 +72,7 @@ export class Profiler implements IProfiler {
   /**
    * Validate profile data object if token exist and it's length is more than 0
    *
-   * @param {IProfile} [data=this.data]
+   * @param {TProfile} [data=this.data]
    * @returns {data is IProfile}
    * @memberof Profiler
    */
