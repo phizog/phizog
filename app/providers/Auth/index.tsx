@@ -33,18 +33,16 @@ export const authorizer = () => (WrappedComponent: any) => {
     constructor (props: IAuthState) {
       super(props)
 
-      console.log(this.props.location)
-      if (
-        this.props.profile.isValid(this.props.profile.data) &&
-        this.props.location.pathname !== '/login'
-      ) {
+      if (this.props.profile.isValid(this.props.profile.data)) {
         this.props.profile
           .pingtoken()
           .then(() => {
             this.props.history.push('/')
           })
           .catch(() => {
-            this.props.history.push('/login')
+            if (this.props.location.pathname !== '/login') {
+              this.props.history.push('/login')
+            }
           })
       }
     }
