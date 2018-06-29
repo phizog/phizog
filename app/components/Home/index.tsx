@@ -2,7 +2,7 @@ import * as React from 'react'
 import { authorizer } from '../../providers/Auth'
 
 @authorizer()
-export default class Home extends React.Component {
+export default class Home extends React.Component<any> {
   render () {
     return (
       <div>
