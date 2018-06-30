@@ -6,6 +6,15 @@ import { messageSerializer } from '../util'
 import { Github } from '../github'
 
 /**
+ * A read-only object which has proper body for guest users
+ */
+export const guestProfile: Readonly<TProfile> = {
+  user_type: 'guest',
+  token: '',
+  skipLogin: false
+}
+
+/**
  * Profiler class helps to create an instance of existing profile or
  * logged in user and expose it as an global object to the electron app
  *
@@ -24,8 +33,11 @@ export class Profiler implements IProfiler {
   constructor (data?: TProfile, path?: string) {
     this.github = new Github()
     this.path = path || constants.profile.path
-    if (arguments.length === 0) this.load()
-    else this.data = data || { user_type: 'guest', token: '' }
+    if (arguments.length === 0) {
+      this.load()
+    } else {
+      this.data = data || guestProfile
+    }
   }
   public get data (): TProfile {
     return this._data
@@ -47,7 +59,7 @@ export class Profiler implements IProfiler {
     } catch (error) {
       switch (error.code) {
         case 'ENOENT':
-          return this.save({ user_type: 'guest', token: '' })
+          return this.save()
         default:
           throw error
       }
@@ -60,9 +72,9 @@ export class Profiler implements IProfiler {
    * @returns {void}
    * @memberof Profiler
    */
-  save (data: TProfile): boolean {
+  save (data?: TProfile): boolean {
     try {
-      this.data = data
+      data = data || this.data || guestProfile
       writeFileSync(this.path, JSON.stringify(data))
       return true
     } catch (error) {

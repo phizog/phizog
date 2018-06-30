@@ -5,6 +5,7 @@ export type TProfile = {
   token: string
   gistId?: string
   lastSyncDate?: Date
+  skipLogin: boolean
 }
 
 export interface IProfiler {
@@ -12,7 +13,7 @@ export interface IProfiler {
   path: string
   github: Github
   load: () => boolean
-  save: (data: TProfile) => boolean
+  save: (data?: TProfile) => boolean
   isValid: (data: TProfile) => data is TProfile
   pingtoken: () => Promise<boolean>
   authorizeRequest: () => Promise<void>

@@ -33,17 +33,28 @@ export const authorizer = () => (WrappedComponent: any) => {
     constructor (props: IAuthState) {
       super(props)
 
-      if (this.props.profile.isValid(this.props.profile.data)) {
-        this.props.profile
-          .pingtoken()
-          .then(() => this.props.history.push('/'))
-          .catch(() => {
-            if (this.props.location.pathname !== '/login') this.props.history.push('/login')
-          })
+      if (
+        this.props.profile.data.skipLogin ||
+        (this.props.location.state && this.props.location.state.skipLogin)
+      ) {
+        this.props.profile.data.skipLogin = true
+        this.props.profile.save()
+        if (this.props.location.pathname !== '/') this.props.history.push('/')
       } else {
-        // redirect currrent page to login route if user's profile isn't valid
-        if (this.props.location.pathname !== '/login') {
-          this.props.history.push('/login')
+        if (this.props.profile.isValid(this.props.profile.data)) {
+          this.props.profile
+            .pingtoken()
+            .then(() => this.props.history.push('/'))
+            .catch(() => {
+              if (this.props.location.pathname !== '/login') {
+                this.props.history.push('/login')
+              }
+            })
+        } else {
+          // redirect currrent page to login route if user's profile isn't valid
+          if (this.props.location.pathname !== '/login') {
+            this.props.history.push('/login')
+          }
         }
       }
     }
