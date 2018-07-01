@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect, Dispatch } from 'react-redux'
 import * as InprogressActions from '../actions/inprogress'
 import { IState } from '../reducers'
-import { Profile } from '../providers/profiler'
+import { Profile } from '../providers/profile'
 
 function mapStateToProps (state: IState): Partial<any> {
   return {
