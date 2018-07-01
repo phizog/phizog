@@ -1,41 +1,21 @@
 import * as React from 'react'
-import { Profiler } from '../../modules/profiler'
 import { IProfiler } from '../../modules/profiler/interfaces'
-import { CorupptedComponnet } from '../../components/Util'
 import { RouteComponentProps } from 'react-router'
 
-interface IAuthState {
+export interface IProps extends RouteComponentProps<any> {
   profile: IProfiler
-  history?: any
-  location?: any
+  history: any
+  location: any
   inProgress: boolean
   toggle (): void
 }
 
-export interface IProps extends RouteComponentProps<any> {
-  children?: any
-}
-
-export class Auth extends React.Component<IProps, IAuthState> {
-  componentWillMount () {
-    this.setState({ profile: new Profiler() })
-  }
-
-  render () {
-    const {
-      state,
-      props: { children }
-    } = this
-    if (!children || typeof children !== 'object') return <CorupptedComponnet />
-    return React.cloneElement(children, state)
-  }
-}
-
 export const authorizer = () => (WrappedComponent: any) => {
-  return class extends React.Component<IAuthState, IProps> {
+  return class extends React.Component<IProps> {
     constructor (props: any) {
       super(props)
-
+    }
+    componentWillMount () {
       if (
         this.props.profile.data.skipLogin ||
         (this.props.location.state && this.props.location.state.skipLogin)

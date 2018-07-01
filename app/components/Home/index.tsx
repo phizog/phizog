@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { authorizer } from '../../providers/Auth'
+import { authorizer } from '../../providers/auth'
 
 @authorizer()
 export default class Home extends React.Component<any> {

@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { remote } from 'electron'
 import { constants } from '../modules/constants'
-// import { authorizer } from '../providers/Auth'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { Row } from './Grid/Row/Row'
 import { Col } from './Grid/Col/Col'
 import Spinner from 'react-loading'
-import { authorizer } from '../providers/Auth'
+import { authorizer } from '../providers/auth'
 
 let styles = require('../styles/windows/login.scss')
 
