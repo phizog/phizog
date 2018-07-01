@@ -2,18 +2,21 @@ import * as React from 'react'
 import { Profiler } from '../../modules/profiler'
 import { IProfiler } from '../../modules/profiler/interfaces'
 import { CorupptedComponnet } from '../../components/Util'
-
-interface IAuthProps {
-  children?: any
-}
+import { RouteComponentProps } from 'react-router'
 
 interface IAuthState {
   profile: IProfiler
   history?: any
   location?: any
+  inProgress: boolean
+  toggle (): void
 }
 
-export class Auth extends React.Component<IAuthProps, IAuthState> {
+export interface IProps extends RouteComponentProps<any> {
+  children?: any
+}
+
+export class Auth extends React.Component<IProps, IAuthState> {
   componentWillMount () {
     this.setState({ profile: new Profiler() })
   }
@@ -29,8 +32,8 @@ export class Auth extends React.Component<IAuthProps, IAuthState> {
 }
 
 export const authorizer = () => (WrappedComponent: any) => {
-  return class extends React.Component<IAuthState> {
-    constructor (props: IAuthState) {
+  return class extends React.Component<IAuthState, IProps> {
+    constructor (props: any) {
       super(props)
 
       if (
@@ -49,17 +52,19 @@ export const authorizer = () => (WrappedComponent: any) => {
               if (this.props.location.pathname !== '/login') {
                 this.props.history.push('/login')
               }
+              this.props.toggle()
             })
         } else {
           // redirect currrent page to login route if user's profile isn't valid
           if (this.props.location.pathname !== '/login') {
             this.props.history.push('/login')
           }
+          this.props.toggle()
         }
       }
     }
     render () {
-      return <WrappedComponent />
+      return <WrappedComponent {...this.props} />
     }
   }
 }

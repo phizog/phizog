@@ -5,6 +5,9 @@ import { ConnectedRouter } from 'react-router-redux'
 import Routes from '../routes'
 import { ipcRenderer } from 'electron'
 
+import 'normalize.css'
+import '../styles/index.scss'
+
 interface IRootType {
   store: Store<any>
   history: History

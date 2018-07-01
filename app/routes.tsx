@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router'
-import { Auth } from './providers/Auth'
 import App from './components/App'
-import Login from './components/Login'
 import Home from './components/Home'
 import Terms from './components/Terms'
+import LoginWindow from './container/LoginWindow'
+import AuthContainer from './container/AuthContainer'
 /**
  * Wraping Switch tag to passing some props to routes
  *
@@ -18,7 +18,7 @@ class Router extends React.Component<any> {
         <Switch>
           <Route
             path='/login'
-            render={(props: any) => <Login {...this.props} {...props} />}
+            render={(props: any) => <LoginWindow {...this.props} {...props} />}
           />
           <Route
             path='/terms'
@@ -36,8 +36,8 @@ class Router extends React.Component<any> {
 
 export default () => (
   <App>
-    <Auth>
+    <AuthContainer>
       <Router />
-    </Auth>
+    </AuthContainer>
   </App>
 )

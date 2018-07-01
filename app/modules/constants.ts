@@ -22,7 +22,8 @@ export const constants = {
     parent: {
       show: false,
       frame: false,
-      path: '#'
+      path: '#',
+      backgroundColor: '#141414'
     },
     main: {
       width: 1024,
