@@ -15,7 +15,7 @@ app.on('window-all-closed', () => {
 const installExtensions = () => {
   if (process.env.NODE_ENV === 'development') {
     const installer = require('electron-devtools-installer')
-    const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS']
+    const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS', 'REACT_PERF']
 
     return Promise.all(
       extensions.map(name =>
