@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect, Dispatch } from 'react-redux'
 import * as InprogressActions from '../actions/inprogress'
 import { IState } from '../reducers'
-import { Auth } from '../providers/Auth'
+import { Profile } from '../providers/profiler'
 
 function mapStateToProps (state: IState): Partial<any> {
   return {
@@ -18,4 +18,4 @@ function mapDispatchToProps (dispatch: Dispatch<IState>): Partial<any> {
 export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(Auth) as any) as React.StatelessComponent<any>
+)(Profile) as any) as React.StatelessComponent<any>
