@@ -18,11 +18,13 @@ export class Login extends React.Component<any> {
   constructor (props: any) {
     super(props)
   }
-  render () {
-    const { inProgress } = this.props
+  componentWillMount () {
     let win = remote.getCurrentWindow()
     win.setSize(constants.windows.login.width, constants.windows.login.height)
-    // win.center()
+    win.center()
+  }
+  render () {
+    const { inProgress } = this.props
 
     return (
       <div className={styles.window}>
