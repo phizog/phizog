@@ -1,9 +1,18 @@
 import * as React from 'react'
 import { remote } from 'electron'
 import { constants } from '../../modules/constants'
-import { Link } from 'react-router-dom'
+import { RouteComponentProps } from 'react-router'
 
-export default class Home extends React.Component<any> {
+export interface IProps extends RouteComponentProps<any> {
+  inProgress: boolean
+  toggle: void
+}
+
+export class Home extends React.Component<any> {
+  constructor (props: any) {
+    super(props)
+    this.logout = this.logout.bind(this)
+  }
   componentWillMount () {
     let win = remote.getCurrentWindow()
     win.setResizable(true)
@@ -14,13 +23,16 @@ export default class Home extends React.Component<any> {
     win.setSize(constants.windows.main.width, constants.windows.main.height)
     win.center()
   }
+  logout () {
+    this.props.history.push('/login')
+  }
   render () {
     return (
       <div>
         <div data-tid='container'>
           <p>This is,</p>
           <h2>Phizog</h2>
-          <Link to='/login'>Logout</Link>
+          <button onClick={this.logout}>Logout</button>
         </div>
       </div>
     )

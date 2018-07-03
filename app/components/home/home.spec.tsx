@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import * as React from 'react'
-import Home from './index'
+import { Home } from './index'
 import { shallow } from 'enzyme'
 
 describe('<Home />', () => {

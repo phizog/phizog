@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router'
 import App from './components/App'
-import Home from './components/Home'
 import Terms from './components/Terms'
 import LoginWindow from './container/LoginWindow'
 import { ProfileContext } from './providers/profile'
 import { Profiler } from './modules/profiler'
 import AuthContainer from './container/AuthContainer'
+import HomeWindow from './container/HomeWindow'
 
 /**
  * Cunsuming ProfileContext and passing it as prop to the route
@@ -46,7 +46,7 @@ export default () => (
         <Switch>
           <PrivateRoute path='/login' component={LoginWindow} />
           <Route path='/terms' render={(props: any) => <Terms {...props} />} />
-          <PrivateRoute path='/' component={Home} />
+          <PrivateRoute path='/' component={HomeWindow} />
         </Switch>
       </div>
     </ProfileContext.Provider>
