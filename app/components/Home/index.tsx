@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { remote } from 'electron'
 import { constants } from '../../modules/constants'
+import { Link } from 'react-router-dom'
 
 export default class Home extends React.Component<any> {
   componentWillMount () {
@@ -19,6 +20,7 @@ export default class Home extends React.Component<any> {
         <div data-tid='container'>
           <p>This is,</p>
           <h2>Phizog</h2>
+          <Link to='/login'>Logout</Link>
         </div>
       </div>
     )
