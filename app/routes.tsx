@@ -4,6 +4,8 @@ import App from './components/App'
 import Home from './components/Home'
 import Terms from './components/Terms'
 import LoginWindow from './container/LoginWindow'
+import { ProfileContext } from './providers/profile'
+import { Profiler } from './modules/profiler'
 import AuthContainer from './container/AuthContainer'
 /**
  * Wraping Switch tag to passing some props to routes
@@ -11,33 +13,41 @@ import AuthContainer from './container/AuthContainer'
  * @class Router
  * @extends {React.Component<any>}
  */
-class Router extends React.Component<any> {
-  render () {
-    return (
-      <div className='window'>
-        <Switch>
-          <Route
-            path='/login'
-            render={(props: any) => <LoginWindow {...this.props} {...props} />}
-          />
-          <Route
-            path='/terms'
-            render={(props: any) => <Terms {...this.props} {...props} />}
-          />
-          <Route
-            path='/'
-            render={(props: any) => <Home {...this.props} {...props} />}
-          />
-        </Switch>
-      </div>
-    )
-  }
-}
+
+const PrivateRoute = ({
+  component: Component,
+  path,
+  ...rest
+}: {
+  component: any
+  path: string
+}) => (
+  <Route
+    {...rest}
+    render={(props: any) => (
+      <ProfileContext.Consumer>
+        {profile => {
+          return (
+            <AuthContainer profile={profile}>
+              <Component {...props} />
+            </AuthContainer>
+          )
+        }}
+      </ProfileContext.Consumer>
+    )}
+  />
+)
 
 export default () => (
   <App>
-    <AuthContainer>
-      <Router />
-    </AuthContainer>
+    <ProfileContext.Provider value={new Profiler()}>
+      <div className='window'>
+        <Switch>
+          <PrivateRoute path='/login' component={LoginWindow} />
+          <Route path='/terms' render={(props: any) => <Terms {...props} />} />
+          <PrivateRoute path='/' component={Home} />
+        </Switch>
+      </div>
+    </ProfileContext.Provider>
   </App>
 )
