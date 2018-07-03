@@ -22,7 +22,8 @@
     "emitDecoratorMetadata": true,
     "sourceMap": true,
     "outDir": "dist",
-    "allowJs": true
+    "allowJs": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "files": [
     "app/index.tsx"
