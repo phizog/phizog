@@ -1,9 +1,7 @@
 import * as React from 'react'
-import { authorizer } from '../../providers/auth'
 import { remote } from 'electron'
 import { constants } from '../../modules/constants'
 
-@authorizer()
 export default class Home extends React.Component<any> {
   componentWillMount () {
     let win = remote.getCurrentWindow()
