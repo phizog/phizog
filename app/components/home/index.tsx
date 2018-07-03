@@ -2,13 +2,16 @@ import * as React from 'react'
 import { remote } from 'electron'
 import { constants } from '../../modules/constants'
 import { RouteComponentProps } from 'react-router'
+import { setSkipLogin } from '../../providers/auth'
+import { IProfiler } from '../../modules/profiler/interfaces'
 
 export interface IProps extends RouteComponentProps<any> {
   inProgress: boolean
   toggle: void
+  profile: IProfiler
 }
 
-export class Home extends React.Component<any> {
+export class Home extends React.Component<IProps> {
   constructor (props: any) {
     super(props)
     this.logout = this.logout.bind(this)
@@ -24,6 +27,7 @@ export class Home extends React.Component<any> {
     win.center()
   }
   logout () {
+    setSkipLogin(this.props.profile, false)
     this.props.history.push('/login')
   }
   render () {
