@@ -29,7 +29,7 @@ const PrivateRoute = ({
       <ProfileContext.Consumer>
         {profile => {
           return (
-            <AuthContainer profile={profile}>
+            <AuthContainer profile={profile} {...props}>
               <Component {...props} />
             </AuthContainer>
           )
