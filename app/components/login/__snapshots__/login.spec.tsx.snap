@@ -1,0 +1,905 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginWindow /> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Login />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="spinnerOverlay"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          <div>
+            <Loading
+              color="#f1f1f1"
+              delay={0}
+              height={24}
+              type="bubbles"
+              width={24}
+            />
+            <p>
+              Abracadabra
+            </p>
+          </div>
+        </div>,
+        <Unknown
+          style={
+            Object {
+              "display": "inherit",
+            }
+          }
+        >
+          <Unknown
+            lg={12}
+            md={12}
+            sm={12}
+            xs={12}
+          >
+            <img
+              src=""
+            />
+            <p>
+              Sign into your account
+            </p>
+          </Unknown>
+          <Unknown
+            lg={12}
+            md={12}
+            sm={12}
+            xs={12}
+          >
+            <button
+              onClick={[Function]}
+            >
+              Connect with Github
+            </button>
+            <p>
+              By signing in you agree to our
+               
+              <Link
+                replace={false}
+                to="/terms"
+              >
+                Terms & Privacy
+              </Link>
+            </p>
+          </Unknown>
+          <Unknown
+            lg={12}
+            md={12}
+            sm={12}
+            xs={12}
+          >
+            <p>
+              <Link
+                replace={false}
+                to={
+                  Object {
+                    "pathname": "/",
+                    "state": Object {
+                      "skipLogin": true,
+                    },
+                  }
+                }
+              >
+                Skip signing in and take me straight to Phizog
+              </Link>
+            </p>
+          </Unknown>
+        </Unknown>,
+      ],
+      "className": "window",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div>
+            <Loading
+              color="#f1f1f1"
+              delay={0}
+              height={24}
+              type="bubbles"
+              width={24}
+            />
+            <p>
+              Abracadabra
+            </p>
+          </div>,
+          "className": "spinnerOverlay",
+          "style": Object {
+            "display": "none",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Loading
+                color="#f1f1f1"
+                delay={0}
+                height={24}
+                type="bubbles"
+                width={24}
+              />,
+              <p>
+                Abracadabra
+              </p>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "color": "#f1f1f1",
+                "delay": 0,
+                "height": 24,
+                "type": "bubbles",
+                "width": 24,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Abracadabra",
+              },
+              "ref": null,
+              "rendered": "Abracadabra",
+              "type": "p",
+            },
+          ],
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <Unknown
+              lg={12}
+              md={12}
+              sm={12}
+              xs={12}
+            >
+              <img
+                src=""
+              />
+              <p>
+                Sign into your account
+              </p>
+            </Unknown>,
+            <Unknown
+              lg={12}
+              md={12}
+              sm={12}
+              xs={12}
+            >
+              <button
+                onClick={[Function]}
+              >
+                Connect with Github
+              </button>
+              <p>
+                By signing in you agree to our
+                 
+                <Link
+                  replace={false}
+                  to="/terms"
+                >
+                  Terms & Privacy
+                </Link>
+              </p>
+            </Unknown>,
+            <Unknown
+              lg={12}
+              md={12}
+              sm={12}
+              xs={12}
+            >
+              <p>
+                <Link
+                  replace={false}
+                  to={
+                    Object {
+                      "pathname": "/",
+                      "state": Object {
+                        "skipLogin": true,
+                      },
+                    }
+                  }
+                >
+                  Skip signing in and take me straight to Phizog
+                </Link>
+              </p>
+            </Unknown>,
+          ],
+          "style": Object {
+            "display": "inherit",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <img
+                  src=""
+                />,
+                <p>
+                  Sign into your account
+                </p>,
+              ],
+              "lg": 12,
+              "md": 12,
+              "sm": 12,
+              "xs": 12,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "src": "",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Sign into your account",
+                },
+                "ref": null,
+                "rendered": "Sign into your account",
+                "type": "p",
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <button
+                  onClick={[Function]}
+                >
+                  Connect with Github
+                </button>,
+                <p>
+                  By signing in you agree to our
+                   
+                  <Link
+                    replace={false}
+                    to="/terms"
+                  >
+                    Terms & Privacy
+                  </Link>
+                </p>,
+              ],
+              "lg": 12,
+              "md": 12,
+              "sm": 12,
+              "xs": 12,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Connect with Github",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Connect with Github",
+                "type": "button",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    "By signing in you agree to our",
+                    " ",
+                    <Link
+                      replace={false}
+                      to="/terms"
+                    >
+                      Terms & Privacy
+                    </Link>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  "By signing in you agree to our",
+                  " ",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Terms & Privacy",
+                      "replace": false,
+                      "to": "/terms",
+                    },
+                    "ref": null,
+                    "rendered": "Terms & Privacy",
+                    "type": [Function],
+                  },
+                ],
+                "type": "p",
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <p>
+                <Link
+                  replace={false}
+                  to={
+                    Object {
+                      "pathname": "/",
+                      "state": Object {
+                        "skipLogin": true,
+                      },
+                    }
+                  }
+                >
+                  Skip signing in and take me straight to Phizog
+                </Link>
+              </p>,
+              "lg": 12,
+              "md": 12,
+              "sm": 12,
+              "xs": 12,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to={
+                    Object {
+                      "pathname": "/",
+                      "state": Object {
+                        "skipLogin": true,
+                      },
+                    }
+                  }
+                >
+                  Skip signing in and take me straight to Phizog
+                </Link>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Skip signing in and take me straight to Phizog",
+                  "replace": false,
+                  "to": Object {
+                    "pathname": "/",
+                    "state": Object {
+                      "skipLogin": true,
+                    },
+                  },
+                },
+                "ref": null,
+                "rendered": "Skip signing in and take me straight to Phizog",
+                "type": [Function],
+              },
+              "type": "p",
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="spinnerOverlay"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          >
+            <div>
+              <Loading
+                color="#f1f1f1"
+                delay={0}
+                height={24}
+                type="bubbles"
+                width={24}
+              />
+              <p>
+                Abracadabra
+              </p>
+            </div>
+          </div>,
+          <Unknown
+            style={
+              Object {
+                "display": "inherit",
+              }
+            }
+          >
+            <Unknown
+              lg={12}
+              md={12}
+              sm={12}
+              xs={12}
+            >
+              <img
+                src=""
+              />
+              <p>
+                Sign into your account
+              </p>
+            </Unknown>
+            <Unknown
+              lg={12}
+              md={12}
+              sm={12}
+              xs={12}
+            >
+              <button
+                onClick={[Function]}
+              >
+                Connect with Github
+              </button>
+              <p>
+                By signing in you agree to our
+                 
+                <Link
+                  replace={false}
+                  to="/terms"
+                >
+                  Terms & Privacy
+                </Link>
+              </p>
+            </Unknown>
+            <Unknown
+              lg={12}
+              md={12}
+              sm={12}
+              xs={12}
+            >
+              <p>
+                <Link
+                  replace={false}
+                  to={
+                    Object {
+                      "pathname": "/",
+                      "state": Object {
+                        "skipLogin": true,
+                      },
+                    }
+                  }
+                >
+                  Skip signing in and take me straight to Phizog
+                </Link>
+              </p>
+            </Unknown>
+          </Unknown>,
+        ],
+        "className": "window",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div>
+              <Loading
+                color="#f1f1f1"
+                delay={0}
+                height={24}
+                type="bubbles"
+                width={24}
+              />
+              <p>
+                Abracadabra
+              </p>
+            </div>,
+            "className": "spinnerOverlay",
+            "style": Object {
+              "display": "none",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Loading
+                  color="#f1f1f1"
+                  delay={0}
+                  height={24}
+                  type="bubbles"
+                  width={24}
+                />,
+                <p>
+                  Abracadabra
+                </p>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "color": "#f1f1f1",
+                  "delay": 0,
+                  "height": 24,
+                  "type": "bubbles",
+                  "width": 24,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Abracadabra",
+                },
+                "ref": null,
+                "rendered": "Abracadabra",
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <Unknown
+                lg={12}
+                md={12}
+                sm={12}
+                xs={12}
+              >
+                <img
+                  src=""
+                />
+                <p>
+                  Sign into your account
+                </p>
+              </Unknown>,
+              <Unknown
+                lg={12}
+                md={12}
+                sm={12}
+                xs={12}
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Connect with Github
+                </button>
+                <p>
+                  By signing in you agree to our
+                   
+                  <Link
+                    replace={false}
+                    to="/terms"
+                  >
+                    Terms & Privacy
+                  </Link>
+                </p>
+              </Unknown>,
+              <Unknown
+                lg={12}
+                md={12}
+                sm={12}
+                xs={12}
+              >
+                <p>
+                  <Link
+                    replace={false}
+                    to={
+                      Object {
+                        "pathname": "/",
+                        "state": Object {
+                          "skipLogin": true,
+                        },
+                      }
+                    }
+                  >
+                    Skip signing in and take me straight to Phizog
+                  </Link>
+                </p>
+              </Unknown>,
+            ],
+            "style": Object {
+              "display": "inherit",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <img
+                    src=""
+                  />,
+                  <p>
+                    Sign into your account
+                  </p>,
+                ],
+                "lg": 12,
+                "md": 12,
+                "sm": 12,
+                "xs": 12,
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "src": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Sign into your account",
+                  },
+                  "ref": null,
+                  "rendered": "Sign into your account",
+                  "type": "p",
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <button
+                    onClick={[Function]}
+                  >
+                    Connect with Github
+                  </button>,
+                  <p>
+                    By signing in you agree to our
+                     
+                    <Link
+                      replace={false}
+                      to="/terms"
+                    >
+                      Terms & Privacy
+                    </Link>
+                  </p>,
+                ],
+                "lg": 12,
+                "md": 12,
+                "sm": 12,
+                "xs": 12,
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Connect with Github",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Connect with Github",
+                  "type": "button",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      "By signing in you agree to our",
+                      " ",
+                      <Link
+                        replace={false}
+                        to="/terms"
+                      >
+                        Terms & Privacy
+                      </Link>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "By signing in you agree to our",
+                    " ",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "Terms & Privacy",
+                        "replace": false,
+                        "to": "/terms",
+                      },
+                      "ref": null,
+                      "rendered": "Terms & Privacy",
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "p",
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <p>
+                  <Link
+                    replace={false}
+                    to={
+                      Object {
+                        "pathname": "/",
+                        "state": Object {
+                          "skipLogin": true,
+                        },
+                      }
+                    }
+                  >
+                    Skip signing in and take me straight to Phizog
+                  </Link>
+                </p>,
+                "lg": 12,
+                "md": 12,
+                "sm": 12,
+                "xs": 12,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to={
+                      Object {
+                        "pathname": "/",
+                        "state": Object {
+                          "skipLogin": true,
+                        },
+                      }
+                    }
+                  >
+                    Skip signing in and take me straight to Phizog
+                  </Link>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Skip signing in and take me straight to Phizog",
+                    "replace": false,
+                    "to": Object {
+                      "pathname": "/",
+                      "state": Object {
+                        "skipLogin": true,
+                      },
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Skip signing in and take me straight to Phizog",
+                  "type": [Function],
+                },
+                "type": "p",
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

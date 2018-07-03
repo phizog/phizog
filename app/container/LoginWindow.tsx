@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect, Dispatch } from 'react-redux'
-import { IProps, Login } from '../components/Login'
+import { IProps, Login } from '../components/login'
 import * as InprogressActions from '../actions/inprogress'
 import { IState } from '../reducers'
 

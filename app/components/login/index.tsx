@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { remote } from 'electron'
-import { constants } from '../modules/constants'
+import { constants } from '../../modules/constants'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import { Row } from './Grid/Row/Row'
-import { Col } from './Grid/Col/Col'
+import { Row } from '../Grid/Row/Row'
+import { Col } from '../Grid/Col/Col'
 import Spinner from 'react-loading'
 
 let styles = require('../styles/windows/login.scss')
