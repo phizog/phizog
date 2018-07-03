@@ -26,6 +26,12 @@ ShallowWrapper {
         <h2>
           Phizog
         </h2>
+        <Link
+          replace={false}
+          to="/login"
+        >
+          Logout
+        </Link>
       </div>,
     },
     "ref": null,
@@ -41,6 +47,12 @@ ShallowWrapper {
           <h2>
             Phizog
           </h2>,
+          <Link
+            replace={false}
+            to="/login"
+          >
+            Logout
+          </Link>,
         ],
         "data-tid": "container",
       },
@@ -68,6 +80,19 @@ ShallowWrapper {
           "rendered": "Phizog",
           "type": "h2",
         },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Logout",
+            "replace": false,
+            "to": "/login",
+          },
+          "ref": null,
+          "rendered": "Logout",
+          "type": [Function],
+        },
       ],
       "type": "div",
     },
@@ -88,6 +113,12 @@ ShallowWrapper {
           <h2>
             Phizog
           </h2>
+          <Link
+            replace={false}
+            to="/login"
+          >
+            Logout
+          </Link>
         </div>,
       },
       "ref": null,
@@ -103,6 +134,12 @@ ShallowWrapper {
             <h2>
               Phizog
             </h2>,
+            <Link
+              replace={false}
+              to="/login"
+            >
+              Logout
+            </Link>,
           ],
           "data-tid": "container",
         },
@@ -129,6 +166,19 @@ ShallowWrapper {
             "ref": null,
             "rendered": "Phizog",
             "type": "h2",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "Logout",
+              "replace": false,
+              "to": "/login",
+            },
+            "ref": null,
+            "rendered": "Logout",
+            "type": [Function],
           },
         ],
         "type": "div",
