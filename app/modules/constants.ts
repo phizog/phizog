@@ -27,7 +27,7 @@ export const constants = {
     },
     main: {
       width: 1024,
-      height: 768,
+      height: 600,
       path: '#',
       resizable: true
     },
