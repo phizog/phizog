@@ -39,14 +39,14 @@ export class Authorizer extends React.Component<IProps> {
             if (this.props.children.props.location.pathname !== '/login') {
               this.props.children.props.history.push('/login')
             }
-            this.props.toggle()
+            if (this.props.inProgress) this.props.toggle()
           })
       } else {
         // redirect currrent page to login route if user's profile isn't valid
         if (this.props.children.props.location.pathname !== '/login') {
           this.props.children.props.history.push('/login')
         }
-        this.props.toggle()
+        if (this.props.inProgress) this.props.toggle()
       }
     }
   }
