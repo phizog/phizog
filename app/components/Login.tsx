@@ -22,7 +22,10 @@ export class Login extends React.Component<any> {
   }
   componentWillMount () {
     let win = remote.getCurrentWindow()
-    win.setMinimumSize(constants.windows.login.width, constants.windows.login.height)
+    win.setMinimumSize(
+      constants.windows.login.width,
+      constants.windows.login.height
+    )
     win.setSize(constants.windows.login.width, constants.windows.login.height)
     // win.center()
   }
