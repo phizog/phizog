@@ -30,7 +30,7 @@ const PrivateRoute = ({
         {profile => {
           return (
             <AuthContainer profile={profile} {...props}>
-              <Component {...props} />
+              <Component profile={profile} {...props} />
             </AuthContainer>
           )
         }}
