@@ -7,13 +7,14 @@ import LoginWindow from './container/LoginWindow'
 import { ProfileContext } from './providers/profile'
 import { Profiler } from './modules/profiler'
 import AuthContainer from './container/AuthContainer'
-/**
- * Wraping Switch tag to passing some props to routes
- *
- * @class Router
- * @extends {React.Component<any>}
- */
 
+/**
+ * Cunsuming ProfileContext and passing it as prop to the route
+ *
+ * @param component
+ * @param path
+ * @returns (React.Component)
+ */
 const PrivateRoute = ({
   component: Component,
   path,

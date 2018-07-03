@@ -7,7 +7,14 @@ export interface IProps extends RouteComponentProps<any> {
   inProgress: boolean
   toggle (): void
 }
-
+/**
+ * Authorizer will wrap children component and check the user's
+ * token is valid or not
+ *
+ * @export
+ * @class Authorizer
+ * @extends {React.Component<IProps>}
+ */
 export class Authorizer extends React.Component<IProps> {
   constructor (props: any) {
     super(props)
