@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import { createBrowserHistory } from 'history'
+import { createHashHistory, createBrowserHistory } from 'history'
 import { routerMiddleware } from 'react-router-redux'
 import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers'
@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'development') {
     }) as any)
     : compose
 
-  history = createBrowserHistory()
+  history = createHashHistory()
   const router = routerMiddleware(history)
   const enhancer = composeEnhancers(applyMiddleware(thunk, router, logger))
 
