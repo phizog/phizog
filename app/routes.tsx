@@ -42,13 +42,11 @@ const PrivateRoute = ({
 export default () => (
   <App>
     <ProfileContext.Provider value={new Profiler()}>
-      <div className='window'>
-        <Switch>
-          <PrivateRoute path='/login' component={LoginWindow} />
-          <Route path='/terms' render={(props: any) => <Terms {...props} />} />
-          <PrivateRoute path='/' component={HomeWindow} />
-        </Switch>
-      </div>
+      <Switch>
+        <PrivateRoute path='/login' component={LoginWindow} />
+        <Route path='/terms' render={(props: any) => <Terms {...props} />} />
+        <PrivateRoute path='/' component={HomeWindow} />
+      </Switch>
     </ProfileContext.Provider>
   </App>
 )

@@ -50,7 +50,7 @@ export class Authorizer extends React.Component<IProps, any> {
     }
   }
   render () {
-    return <div>{this.props.children}</div>
+    return this.props.children
   }
 }
 
