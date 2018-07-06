@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { Row } from '../Grid/Row/Row'
-import { Col } from '../Grid/Col/Col'
+import { Row, Col } from 'react-flexbox-grid'
 
 export default class Terms extends React.Component<any> {
   render () {

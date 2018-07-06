@@ -1,6 +1,7 @@
 :local {
   .window {
     background: #141414;
+    height: 100%;
   }
   .spinnerOverlay {
     position: absolute;
@@ -25,6 +26,28 @@
       margin: 10px 0 0;
       font-size: .9em;
       letter-spacing: .5px;
+    }
+  }
+  .header__title {
+    font-size: .8em;
+    font-weight: bold;
+  }
+  .button_github {
+    padding: 6px 9px;
+    background: #f1f1f1;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    svg {
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+    }
+    span {
+      vertical-align: middle;
+      font-size: .8em;
+      font-weight: 500;
+      padding-left: 7px;
     }
   }
 }
