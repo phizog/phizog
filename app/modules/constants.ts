@@ -32,8 +32,8 @@ export const constants = {
       resizable: true
     },
     login: {
-      width: 300,
-      height: 400,
+      width: 360,
+      height: 480,
       resizable: false,
       path: '#login'
     }
