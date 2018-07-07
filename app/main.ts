@@ -8,6 +8,7 @@ if (process.env.NODE_ENV === 'production') {
   sourceMapSupport.install()
 }
 
+app.commandLine.appendSwitch('--disable-http-cache')
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
