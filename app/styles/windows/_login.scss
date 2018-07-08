@@ -50,4 +50,22 @@
       padding-left: 7px;
     }
   }
+  .terms__description {
+    font-size: .8em;
+    padding: 0 5em;
+    color: #ccc;
+    a {
+      color: #f1f1f1;
+    }
+  }
+  .skip_description {
+    font-size: .8em;
+  }
+  #githubWebView {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
