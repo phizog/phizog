@@ -9,3 +9,8 @@ export const messageSerializer: any = (status: number, data?: any) => ({
   status: status,
   data: data
 })
+
+export const queryString: any = (object: Object) =>
+  Object.keys(object)
+    .map(key => `${key}=${object[key]}`)
+    .join('&')

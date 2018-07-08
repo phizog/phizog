@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosPromise, AxiosResponse } from 'axios'
 import { constants } from '../constants'
 import { IGithub, IFile } from './interfaces'
+import { queryString } from '../util'
 
 export class Github implements IGithub {
   /**
@@ -23,7 +24,7 @@ export class Github implements IGithub {
    */
   setToken (token: string): void {
     this.axios.interceptors.request.use(config => {
-      config.headers['Authorization'] = `token ${token}`
+      config.headers['Authorization'] = token
 
       return config
     })
@@ -146,6 +147,23 @@ export class Github implements IGithub {
       } else {
         return resolve(res)
       }
+    })
+  }
+  exchanger (code: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(constants.oauth.exchanger)
+        .then(response => {
+          let params: Object = {
+            code: code,
+            redirect_uri: constants.oauth.parameters.callback,
+            client_id: constants.oauth.parameters.client_id
+          }
+          resolve(axios.post(`${response.data}?${queryString(params)}`))
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   }
 }

@@ -45,7 +45,8 @@ export const constants = {
       callback: 'https://phizog.github.io',
       scope: 'gist',
       allow_signup: true
-    }
+    },
+    exchanger: 'https://phizog.github.io/exchanger.txt'
   },
   api: {
     baseURL: 'https://api.github.com'

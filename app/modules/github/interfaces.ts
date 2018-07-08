@@ -11,6 +11,7 @@ export interface IGithub {
   updateGist: (id: string, files: IFile) => AxiosPromise
   findGist: (page: number) => Promise<any>
   gistExtractor: (res: AxiosResponse) => Promise<any>
+  exchanger: (code: string) => Promise<any>
 }
 
 export interface IFile {
