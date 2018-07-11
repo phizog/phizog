@@ -66,7 +66,7 @@ export class Login extends React.Component<IProps, IState> {
           this.props.profile.save()
           this.props.history.push('/')
           this.setState({
-            oauthRequired: true
+            oauthRequired: false
           })
           if (this.props.inProgress) this.props.toggle()
         })
