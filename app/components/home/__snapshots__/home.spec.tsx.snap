@@ -4,7 +4,15 @@ exports[`<Home /> should render correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Home />,
+  Symbol(enzyme.__unrendered__): <Home
+    history={[MockFunction]}
+    inProgress={true}
+    location={[MockFunction]}
+    match={[MockFunction]}
+    profile={[MockFunction]}
+    staticContext={[MockFunction]}
+    toggle={[MockFunction]}
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -26,12 +34,11 @@ ShallowWrapper {
         <h2>
           Phizog
         </h2>
-        <Link
-          replace={false}
-          to="/login"
+        <button
+          onClick={[Function]}
         >
           Logout
-        </Link>
+        </button>
       </div>,
     },
     "ref": null,
@@ -47,12 +54,11 @@ ShallowWrapper {
           <h2>
             Phizog
           </h2>,
-          <Link
-            replace={false}
-            to="/login"
+          <button
+            onClick={[Function]}
           >
             Logout
-          </Link>,
+          </button>,
         ],
         "data-tid": "container",
       },
@@ -83,15 +89,14 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "host",
           "props": Object {
             "children": "Logout",
-            "replace": false,
-            "to": "/login",
+            "onClick": [Function],
           },
           "ref": null,
           "rendered": "Logout",
-          "type": [Function],
+          "type": "button",
         },
       ],
       "type": "div",
@@ -113,12 +118,11 @@ ShallowWrapper {
           <h2>
             Phizog
           </h2>
-          <Link
-            replace={false}
-            to="/login"
+          <button
+            onClick={[Function]}
           >
             Logout
-          </Link>
+          </button>
         </div>,
       },
       "ref": null,
@@ -134,12 +138,11 @@ ShallowWrapper {
             <h2>
               Phizog
             </h2>,
-            <Link
-              replace={false}
-              to="/login"
+            <button
+              onClick={[Function]}
             >
               Logout
-            </Link>,
+            </button>,
           ],
           "data-tid": "container",
         },
@@ -170,15 +173,14 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "host",
             "props": Object {
               "children": "Logout",
-              "replace": false,
-              "to": "/login",
+              "onClick": [Function],
             },
             "ref": null,
             "rendered": "Logout",
-            "type": [Function],
+            "type": "button",
           },
         ],
         "type": "div",
