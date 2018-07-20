@@ -7,8 +7,8 @@ import { IProfiler } from '../../modules/profiler/interfaces'
 
 export interface IProps extends RouteComponentProps<any> {
   inProgress: boolean
-  toggle: void
   profile: IProfiler
+  toggle (): void
 }
 
 export class Home extends React.Component<IProps> {
@@ -27,6 +27,7 @@ export class Home extends React.Component<IProps> {
     win.center()
   }
   logout () {
+    if (this.props.inProgress) this.props.toggle()
     setSkipLogin(this.props.profile, false)
     this.props.history.push('/login')
   }
