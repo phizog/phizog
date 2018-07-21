@@ -72,6 +72,14 @@ const SkipButton = styled.p`
   font-size: 0.8em;
 `
 
+const Logo = styled.div`
+  height: 48px;
+  margin-top: 3em;
+  img {
+    height: 32px;
+  }
+`
+
 export interface IProps extends RouteComponentProps<any> {
   inProgress: boolean
   profile: IProfiler
@@ -125,10 +133,10 @@ export class Login extends React.Component<IProps, IState> {
             lastSyncDate: new Date()
           }
           this.props.profile.save()
-          this.props.history.push('/')
           this.setState({
             oauthRequired: false
           })
+          this.props.history.push('/')
           if (this.props.inProgress) this.props.toggle()
         })
       }
@@ -156,7 +164,9 @@ export class Login extends React.Component<IProps, IState> {
           style={{ height: '100%', display: inProgress ? 'none' : 'flex' }}
         >
           <Col xs={12} sm={12} md={12} lg={12}>
-            <img src='https://dummyimage.com/48x48/141414/f1f1f1.png&text=P' />
+            <Logo>
+              <img src='resources/logo/phizog.svg' />
+            </Logo>
             <LoginHeader>Sign into your account</LoginHeader>
           </Col>
           <Col xs={12} sm={12} md={12} lg={12}>
