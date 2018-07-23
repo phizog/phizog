@@ -1,5 +1,6 @@
 # Phizog
-<a href="https://travis-ci.org/msudgh/syncshell" title="Build Status">![Build Status](https://img.shields.io/travis/phizog/phizog/dev.svg?style=flat)</a> <a href="https://github.com/phizog/phizog/blob/master/LICENSE" title="MIT License">![Foo](https://img.shields.io/badge/license-MIT-brightgreen.svg)</a>
+[![Build Status](https://travis-ci.org/phizog/phizog.svg?branch=dev)](https://travis-ci.org/phizog/phizog)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/phizog/phizog/blob/master/LICENSE)
 
 Socket API Development Environment
 
