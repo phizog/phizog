@@ -9,7 +9,7 @@ describe('<Login />', () => {
 
   it('should render correctly', () => {
     const component = shallow(
-      <MemoryRouter>
+      <MemoryRouter keyLength={0}>
         <Login
           inProgress={true}
           toggle={mock}
