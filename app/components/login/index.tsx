@@ -143,7 +143,7 @@ export class Login extends React.Component<IProps, IState> {
     })
     webview.addEventListener('dom-ready', (e: any) => {
       // Prevent clicking on links except submit button
-      const preventClicking = `body{pointer-events:none}#js-oauth-authorize-btn{pointer-events:auto}`
+      const preventClicking = `body{pointer-events:none} input[type=text], #js-oauth-authorize-btn{pointer-events:auto}`
       webview.insertCSS(preventClicking)
     })
   }
