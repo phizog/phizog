@@ -4,6 +4,8 @@ import { constants } from '../../modules/constants'
 import { RouteComponentProps } from 'react-router'
 import { setSkipLogin } from '../../providers/auth'
 import { IProfiler } from '../../modules/profiler/interfaces'
+import * as classnames from 'classnames'
+import Titlebar from '../titlebar'
 
 export interface IProps extends RouteComponentProps<any> {
   inProgress: boolean
@@ -33,7 +35,8 @@ export class Home extends React.Component<IProps> {
   }
   render () {
     return (
-      <div>
+      <div className={classnames('subwindow')}>
+        <Titlebar />
         <div data-tid='container'>
           <p>This is,</p>
           <h2>Phizog</h2>
