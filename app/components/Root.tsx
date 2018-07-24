@@ -29,8 +29,14 @@ injectGlobal`
     text-decoration: none;
     color: inherit;
   }
+  .align_left {
+    text-align: left;
+  }
   .align_center {
     text-align: center;
+  }
+  .align_right {
+    text-align: right;
   }
 `
 
