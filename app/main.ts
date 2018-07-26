@@ -35,6 +35,9 @@ app.on('ready', () =>
     )
     windowObject = new BrowserWindow(windowOptions)
 
+    // Hide menubar
+    windowObject.setMenu(null)
+
     windowObject.loadURL(`${constants.basePath}${windowOptions.path}`)
 
     if (process.env.NODE_ENV === 'development') {
