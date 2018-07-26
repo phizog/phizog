@@ -21,7 +21,6 @@ export const constants = {
      */
     parent: {
       show: false,
-      frame: false,
       path: '#',
       backgroundColor: '#141414'
     },
