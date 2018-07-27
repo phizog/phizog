@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Row, Col } from 'react-flexbox-grid'
 import * as classnames from 'classnames'
 import variables from '../css/variables'
-import * as is from 'electron-is'
+import Icon from '../../resources/icons'
 
 const TitlebarStyle = styled.div`
   height: 36px;
@@ -12,7 +12,7 @@ const TitlebarStyle = styled.div`
 
 const Logo = styled.div`
   img {
-    width: 32px;
+    width: 24px;
     height: 36px;
   }
 `
@@ -26,22 +26,20 @@ export default class Titlebar extends React.Component<any, any> {
   render () {
     return (
       <TitlebarStyle>
-        <Row
-          middle='xs'
-          style={{ flexDirection: is.windows() ? 'row-reverse' : 'row' }}
-        >
-          <Col xs={4} />
+        <Row middle='xs'>
+          <Col xs={4} className={classnames('align_left')} />
           <Col xs={4}>
             <Logo className={classnames('align_center')}>
               <img src='resources/logo/phizog.svg' />
             </Logo>
           </Col>
           <Col xs={4}>
-            <Nav
-              className={classnames(
-                is.windows() ? 'align_left' : 'align_right'
-              )}
-            />
+            <Nav className={classnames('align_right')}>
+              <button>
+                <Icon color='transparent' kind='user' width={16} height={16} />
+                <span>Login</span>
+              </button>
+            </Nav>
           </Col>
         </Row>
       </TitlebarStyle>
