@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 
-const iconList = ['user']
+const iconList = ['favorite', 'settings', 'sync', 'user']
 
 export interface IconProps {
   color?: string
@@ -53,6 +53,52 @@ export default class Icon extends React.Component<IconProps, {}> {
     const { color, height, onClick, size, style, width, className } = this.props
 
     switch (kind) {
+      case 'favorite':
+        return (
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill={color}
+            height={height || size}
+            width={width || size}
+            onClick={onClick}
+            style={style}
+            className={className}
+            viewBox='0 0 510 469.2'
+          >
+            <path d='M255 469.2l-35.7-35.7C86.7 316.2 0 237.1 0 140.3 0 61.2 61.2 0 140.3 0c43.4 0 86.7 20.4 114.8 53.5C283 20.4 326.4 0 369.8 0 448.8 0 510 61.2 510 140.3c0 96.9-86.7 175.9-219.3 293.3L255 469.2z' />
+          </svg>
+        )
+      case 'settings':
+        return (
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill={color}
+            height={height || size}
+            width={width || size}
+            onClick={onClick}
+            style={style}
+            className={className}
+            viewBox='0 0 58 58'
+          >
+            <path d='M29 24c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z' />
+            <path d='M56 27h-2.087a24.886 24.886 0 0 0-5.89-14.195l1.483-1.483a2 2 0 1 0-2.828-2.828l-1.483 1.483A24.886 24.886 0 0 0 31 4.087V2a2 2 0 0 0-4 0v2.087a24.88 24.88 0 0 0-14.195 5.89l-1.483-1.483a2 2 0 1 0-2.828 2.828l1.483 1.483A24.886 24.886 0 0 0 4.087 27H2a2 2 0 0 0 0 4h2.087a24.886 24.886 0 0 0 5.89 14.195l-1.483 1.483a2 2 0 1 0 2.828 2.828l1.483-1.483A24.886 24.886 0 0 0 27 53.913V56a2 2 0 0 0 4 0v-2.087a24.88 24.88 0 0 0 14.195-5.89l1.483 1.483c.391.391.902.586 1.414.586s1.023-.195 1.414-.586a2 2 0 0 0 0-2.828l-1.483-1.483A24.886 24.886 0 0 0 53.913 31H56a2 2 0 0 0 0-4zM29 50C17.421 50 8 40.579 8 29S17.421 8 29 8s21 9.421 21 21-9.421 21-21 21z' />
+          </svg>
+        )
+      case 'sync':
+        return (
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill={color}
+            height={height || size}
+            width={width || size}
+            onClick={onClick}
+            style={style}
+            className={className}
+            viewBox='0 0 408 561'
+          >
+            <path d='M204 76.5V0L102 102l102 102v-76.5c84.1 0 153 68.9 153 153 0 25.5-7.6 51-17.9 71.4l38.3 38.3C395.3 357 408 321.3 408 280.5c0-112.2-91.8-204-204-204zm0 357c-84.1 0-153-68.9-153-153 0-25.5 7.6-51 17.9-71.4l-38.3-38.2C12.8 204 0 239.7 0 280.5c0 112.2 91.8 204 204 204V561l102-102-102-102z' />
+          </svg>
+        )
       case 'user':
         return (
           <svg

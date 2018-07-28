@@ -8,10 +8,7 @@ export interface TabState {
 }
 
 const TabStyle = styled.li`
-  background: transparent
-  &.focused {
-    background: red
-  }
+  background: transparent;
 `
 
 export class Tab extends React.Component<any, TabState> {
@@ -38,16 +35,14 @@ const TabsStyle = styled.ul`
   height: 32px
 `
 
-export class Tabs extends React.Component {
+export class Tabs extends React.Component<any, any> {
   constructor (props: any) {
     super(props)
+    this.state = {
+      tabs: [<Tab />]
+    }
   }
   render () {
-    const defaultTabs = [
-      <Tab />
-    ]
-    return (
-      <TabsStyle>{defaultTabs}</TabsStyle>
-    )
+    return <TabsStyle>{this.state.tabs}</TabsStyle>
   }
 }

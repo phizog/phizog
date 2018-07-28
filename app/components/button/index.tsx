@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import variables from '../css/variables'
 
 export const Button = styled.button`
-  padding: 2px 9px 4px 7px
+  padding: 0px 8px 1px 5px
   border: 1px solid transparent;
   border-color: #c2c0c2 #c2c0c2 #a19fa1;
   color: ${variables.buttonColor}
@@ -15,7 +15,7 @@ export const Button = styled.button`
   }
   span {
     vertical-align: middle
-    font-size: .813em
+    font-size: .75em
     margin-left: 3px
     font-weight: 500
   }

@@ -25,91 +25,9 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": <div
-        data-tid="container"
-      >
-        <p>
-          This is,
-        </p>
-        <h2>
-          Phizog
-        </h2>
-        <button
-          onClick={[Function]}
-        >
-          Logout
-        </button>
-      </div>,
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <p>
-            This is,
-          </p>,
-          <h2>
-            Phizog
-          </h2>,
-          <button
-            onClick={[Function]}
-          >
-            Logout
-          </button>,
-        ],
-        "data-tid": "container",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "This is,",
-          },
-          "ref": null,
-          "rendered": "This is,",
-          "type": "p",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Phizog",
-          },
-          "ref": null,
-          "rendered": "Phizog",
-          "type": "h2",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Logout",
-            "onClick": [Function],
-          },
-          "ref": null,
-          "rendered": "Logout",
-          "type": "button",
-        },
-      ],
-      "type": "div",
-    },
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <div
+      "children": Array [
+        <Header />,
+        <div
           data-tid="container"
         >
           <p>
@@ -124,9 +42,21 @@ ShallowWrapper {
             Logout
           </button>
         </div>,
+      ],
+      "className": "subwindow",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
       },
-      "ref": null,
-      "rendered": Object {
+      Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
@@ -185,6 +115,106 @@ ShallowWrapper {
         ],
         "type": "div",
       },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Header />,
+          <div
+            data-tid="container"
+          >
+            <p>
+              This is,
+            </p>
+            <h2>
+              Phizog
+            </h2>
+            <button
+              onClick={[Function]}
+            >
+              Logout
+            </button>
+          </div>,
+        ],
+        "className": "subwindow",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <p>
+                This is,
+              </p>,
+              <h2>
+                Phizog
+              </h2>,
+              <button
+                onClick={[Function]}
+              >
+                Logout
+              </button>,
+            ],
+            "data-tid": "container",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "This is,",
+              },
+              "ref": null,
+              "rendered": "This is,",
+              "type": "p",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Phizog",
+              },
+              "ref": null,
+              "rendered": "Phizog",
+              "type": "h2",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Logout",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Logout",
+              "type": "button",
+            },
+          ],
+          "type": "div",
+        },
+      ],
       "type": "div",
     },
   ],
