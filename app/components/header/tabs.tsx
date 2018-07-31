@@ -17,14 +17,22 @@ export type TabProps = {
 const TabStyle = styled.div`
   background: transparent;
   font-size: 0.8em;
-  padding-left: 8px;
+  padding: 0 11px;
   display: flex;
   align-items: center;
   justify-content: left;
   height: 100%;
   width: 100%;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
   &.focused {
+    border-right: 0;
     background: rgba(255, 255, 255, 0.05);
+  }
+  span {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
   }
 `
 
