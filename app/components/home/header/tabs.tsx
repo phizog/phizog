@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import * as classnames from 'classnames'
 import * as UUID from 'uuid/v4'
 import { findDOMNode } from 'react-dom'
+import variables from '../../css/variables'
 
 export type TabState = {
   title: string
@@ -28,11 +29,16 @@ const TabStyle = styled.div`
   &.focused {
     border-right: 0;
     background: rgba(255, 255, 255, 0.05);
+    span {
+      color: #fff;
+    }
   }
   span {
-    overflow:hidden;
-    white-space:nowrap;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
+    color: ${variables.buttonColor};
   }
 `
 
@@ -47,10 +53,12 @@ export class Tab extends React.Component<TabProps, TabState> {
     }
   }
   activeTab () {
-    this.setState({
-      focused: true
-    })
-    this.props.onClick(this)
+    if (!this.state.focused) {
+      this.setState({
+        focused: true
+      })
+      this.props.onClick(this)
+    }
   }
   deactiveTab () {
     this.setState({
@@ -96,6 +104,21 @@ const TabNode = styled.li`
   justify-content: left;
   flex-basis: 180px;
   min-width: 80px;
+`
+
+const NewTab = styled.button`
+  background: none;
+  border: 0;
+  outline: 0;
+  color: ${variables.buttonColor};
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  padding: 0 11px;
+  position: sticky;
+  right: 0;
+  // box-shadow: 0 0 150px 50px rgba(0, 0, 0, 0.65);
+  &:hover {
+    color: #fff;
+  }
 `
 
 export class Tabs extends React.Component<any, any> {
@@ -159,10 +182,10 @@ export class Tabs extends React.Component<any, any> {
       )
     })
     return (
-      <div>
-        <TabsStyle ref={this.state.tabsRef}>{tabsNodes}</TabsStyle>
-        <button onClick={this.newTab}>New Tab</button>
-      </div>
+      <TabsStyle ref={this.state.tabsRef}>
+        {tabsNodes}
+        <NewTab onClick={this.newTab}>+</NewTab>
+      </TabsStyle>
     )
   }
 }

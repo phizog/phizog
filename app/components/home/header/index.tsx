@@ -2,9 +2,9 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Row, Col } from 'react-flexbox-grid'
 import * as classnames from 'classnames'
-import variables from '../css/variables'
-import Icon from '../../resources/icons'
-import { Button, GroupButton } from '../button'
+import variables from '../../css/variables'
+import Icon from '../../../resources/icons'
+import { Button, GroupButton } from '../../button'
 import { Tabs } from './tabs'
 
 const HeaderStyle = styled.div`
@@ -23,12 +23,14 @@ export default class Header extends React.Component<any, any> {
     return (
       <HeaderStyle>
         <Row middle='xs'>
-          <Col xs={9} className={classnames('align_left')}>
+          <Col xs={10} className={classnames('align_left')}>
             <Tabs />
           </Col>
-          <Col xs={3}>
+          <Col xs={2}>
             <Nav className={classnames('align_right')}>
-              <GroupButton style={{ display: 'inline-block' }}>
+              <GroupButton
+                style={{ display: 'inline-block', marginRight: '6px' }}
+              >
                 <Button className={classnames('transparent')}>
                   <Icon
                     color={variables.buttonColor}
