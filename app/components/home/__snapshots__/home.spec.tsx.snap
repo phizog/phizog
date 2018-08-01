@@ -27,21 +27,15 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Header />,
-        <div
-          data-tid="container"
-        >
-          <p>
-            This is,
-          </p>
-          <h2>
-            Phizog
-          </h2>
-          <button
-            onClick={[Function]}
-          >
-            Logout
-          </button>
-        </div>,
+        <Container
+          history={[MockFunction]}
+          inProgress={true}
+          location={[MockFunction]}
+          match={[MockFunction]}
+          profile={[MockFunction]}
+          staticContext={[MockFunction]}
+          toggle={[MockFunction]}
+        />,
       ],
       "className": "subwindow",
     },
@@ -59,61 +53,19 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <p>
-              This is,
-            </p>,
-            <h2>
-              Phizog
-            </h2>,
-            <button
-              onClick={[Function]}
-            >
-              Logout
-            </button>,
-          ],
-          "data-tid": "container",
+          "history": [MockFunction],
+          "inProgress": true,
+          "location": [MockFunction],
+          "match": [MockFunction],
+          "profile": [MockFunction],
+          "staticContext": [MockFunction],
+          "toggle": [MockFunction],
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "This is,",
-            },
-            "ref": null,
-            "rendered": "This is,",
-            "type": "p",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Phizog",
-            },
-            "ref": null,
-            "rendered": "Phizog",
-            "type": "h2",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Logout",
-              "onClick": [Function],
-            },
-            "ref": null,
-            "rendered": "Logout",
-            "type": "button",
-          },
-        ],
-        "type": "div",
+        "rendered": null,
+        "type": [Function],
       },
     ],
     "type": "div",
@@ -126,21 +78,15 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Header />,
-          <div
-            data-tid="container"
-          >
-            <p>
-              This is,
-            </p>
-            <h2>
-              Phizog
-            </h2>
-            <button
-              onClick={[Function]}
-            >
-              Logout
-            </button>
-          </div>,
+          <Container
+            history={[MockFunction]}
+            inProgress={true}
+            location={[MockFunction]}
+            match={[MockFunction]}
+            profile={[MockFunction]}
+            staticContext={[MockFunction]}
+            toggle={[MockFunction]}
+          />,
         ],
         "className": "subwindow",
       },
@@ -158,61 +104,19 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <p>
-                This is,
-              </p>,
-              <h2>
-                Phizog
-              </h2>,
-              <button
-                onClick={[Function]}
-              >
-                Logout
-              </button>,
-            ],
-            "data-tid": "container",
+            "history": [MockFunction],
+            "inProgress": true,
+            "location": [MockFunction],
+            "match": [MockFunction],
+            "profile": [MockFunction],
+            "staticContext": [MockFunction],
+            "toggle": [MockFunction],
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "This is,",
-              },
-              "ref": null,
-              "rendered": "This is,",
-              "type": "p",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "Phizog",
-              },
-              "ref": null,
-              "rendered": "Phizog",
-              "type": "h2",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "Logout",
-                "onClick": [Function],
-              },
-              "ref": null,
-              "rendered": "Logout",
-              "type": "button",
-            },
-          ],
-          "type": "div",
+          "rendered": null,
+          "type": [Function],
         },
       ],
       "type": "div",
