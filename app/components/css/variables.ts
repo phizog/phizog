@@ -4,5 +4,6 @@ export default {
   textColorPrimary: '#f1f1f1',
   backColorPrimary: '#141414',
   buttonColor: '#444',
-  borderRadius: '3px'
+  borderRadius: '3px',
+  containerBg: '#1c1c1c'
 }

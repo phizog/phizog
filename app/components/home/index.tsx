@@ -2,10 +2,10 @@ import * as React from 'react'
 import { remote } from 'electron'
 import { constants } from '../../modules/constants'
 import { RouteComponentProps } from 'react-router'
-import { setSkipLogin } from '../../providers/auth'
 import { IProfiler } from '../../modules/profiler/interfaces'
 import * as classnames from 'classnames'
-import Header from '../header'
+import Header from './header'
+import Container from './container'
 
 export interface IProps extends RouteComponentProps<any> {
   inProgress: boolean
@@ -16,7 +16,6 @@ export interface IProps extends RouteComponentProps<any> {
 export class Home extends React.Component<IProps> {
   constructor (props: any) {
     super(props)
-    this.logout = this.logout.bind(this)
   }
   componentWillMount () {
     let win = remote.getCurrentWindow()
@@ -28,20 +27,11 @@ export class Home extends React.Component<IProps> {
     win.setSize(constants.windows.main.width, constants.windows.main.height)
     win.center()
   }
-  logout () {
-    if (this.props.inProgress) this.props.toggle()
-    setSkipLogin(this.props.profile, false)
-    this.props.history.push('/login')
-  }
   render () {
     return (
       <div className={classnames('subwindow')}>
         <Header />
-        <div data-tid='container'>
-          <p>This is,</p>
-          <h2>Phizog</h2>
-          <button onClick={this.logout}>Logout</button>
-        </div>
+        <Container {...this.props} />
       </div>
     )
   }
