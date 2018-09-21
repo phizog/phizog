@@ -64,6 +64,7 @@ typings/
 package-lock.json
 
 # dist
+dist
 app/dist
 release
 app/main.js
