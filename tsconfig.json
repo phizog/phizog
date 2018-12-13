@@ -13,7 +13,7 @@
     ],
     "types": [],
     "alwaysStrict": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

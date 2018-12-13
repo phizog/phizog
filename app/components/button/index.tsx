@@ -42,6 +42,11 @@ export const Button = styled.button`
       }
     }
   }
+  &.close_tab {
+    svg {
+      fill: ${variables.buttonColor}
+    }
+  }
 `
 
 export const GroupButton = styled.div`

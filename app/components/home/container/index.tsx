@@ -2,6 +2,7 @@ import * as React from 'react'
 import { setSkipLogin } from '../../../providers/auth'
 import styled from 'styled-components'
 import variables from '../../css/variables'
+import { IProps } from '..'
 
 const ContainerStyle = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ const ContainerStyle = styled.div`
   background: ${variables.containerBg};
 `
 
-export default class Container extends React.Component<any, any> {
+export default class Container extends React.Component<IProps, any> {
   constructor (props: any) {
     super(props)
     this.logout = this.logout.bind(this)

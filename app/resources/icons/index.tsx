@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 
-const iconList = ['favorite', 'settings', 'sync', 'user']
+const iconList = ['close', 'favorite', 'settings', 'sync', 'user']
 
 export interface IconProps {
   color?: string
@@ -43,7 +43,10 @@ export default class Icon extends React.Component<IconProps, {}> {
   renderPreviewKind (kind: string) {
     return (
       <div key={kind}>
-        <h3>&lt;Icon kind="{kind}" /&gt;</h3>
+        <h3>
+          &lt;Icon kind="
+          {kind}" /&gt;
+        </h3>
         {this.renderIcon(kind)}
       </div>
     )
@@ -53,6 +56,21 @@ export default class Icon extends React.Component<IconProps, {}> {
     const { color, height, onClick, size, style, width, className } = this.props
 
     switch (kind) {
+      case 'close':
+        return (
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill={color}
+            height={height || size}
+            width={width || size}
+            onClick={onClick}
+            style={style}
+            className={className}
+            viewBox='0 0 21.9 21.9'
+          >
+            <path d='M14.1 11.3c-.2-.2-.2-.5 0-.7l7.5-7.5c.2-.2.3-.5.3-.7s-.1-.5-.3-.7L20.2.3c-.2-.2-.5-.3-.7-.3-.3 0-.5.1-.7.3l-7.5 7.5c-.2.2-.5.2-.7 0L3.1.3C2.9.1 2.6 0 2.4 0s-.5.1-.7.3L.3 1.7c-.2.2-.3.5-.3.7s.1.5.3.7l7.5 7.5c.2.2.2.5 0 .7L.3 18.8c-.2.2-.3.5-.3.7s.1.5.3.7l1.4 1.4c.2.2.5.3.7.3s.5-.1.7-.3l7.5-7.5c.2-.2.5-.2.7 0l7.5 7.5c.2.2.5.3.7.3s.5-.1.7-.3l1.4-1.4c.2-.2.3-.5.3-.7s-.1-.5-.3-.7l-7.5-7.5z' />
+          </svg>
+        )
       case 'favorite':
         return (
           <svg
@@ -111,9 +129,9 @@ export default class Icon extends React.Component<IconProps, {}> {
             className={className}
             viewBox='0 0 24 24'
             stroke='currentColor'
-            strokeWidth='2'
-            strokeLinecap='round'
-            strokeLinejoin='round'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'
           >
             <path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2' />
             <circle cx='12' cy='7' r='4' />
