@@ -4,10 +4,10 @@ const isWindow = () => !!window
 const isGlobal = () => !!global
 
 let logger: ILogger = {
-  log (...messages) {
+  log(...messages) {
     messages.forEach((msg: string) => process.stdin.write(msg))
   },
-  error (...messages) {
+  error(...messages) {
     messages.forEach((msg: string) => process.stderr.write(msg))
   }
 }
