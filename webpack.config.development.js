@@ -6,7 +6,6 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
-
 const port = process.env.PORT || 3000
 
 module.exports = merge(baseConfig, {
@@ -32,7 +31,7 @@ module.exports = merge(baseConfig, {
         test: /^((?!\.global).)*\.css$/,
         loaders: [
           'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+          'css-loader?modules&sourceMap&importLoaders=true&localIdentName=[name]__[local]___[hash:base64:5]'
         ]
       },
       // Add SASS support  - compile all .global.scss files and pipe it to style.css

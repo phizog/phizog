@@ -2,7 +2,7 @@
  * Base webpack config used across other specific configs
  */
 
-const path = require('path')
+ const path = require('path')
 
 module.exports = {
   devtool: 'source-map',
@@ -32,7 +32,7 @@ module.exports = {
   },
   plugins: [],
   mode: process.env.NODE_ENV,
-  target: 'electron-renderer',
+  target: 'electron-main',
   /**
    * Disables webpack processing of __dirname and __filename.
    * If you run the bundle in node.js it falls back to these values of node.js.
