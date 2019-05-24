@@ -1,11 +1,12 @@
-import { combineReducers, Reducer } from 'redux'
-import { routerReducer as routing } from 'react-router-redux'
+import { combineReducers } from 'redux'
 import inProgress, { TState as TInProgressState } from './inprogress'
+import { connectRouter } from 'connected-react-router'
 
-const rootReducer = combineReducers({
-  inProgress,
-  routing: routing as Reducer<any>
-})
+const rootReducer = (history: any) =>
+  combineReducers({
+    inProgress,
+    router: connectRouter(history)
+  })
 
 export interface IState {
   inProgress: TInProgressState

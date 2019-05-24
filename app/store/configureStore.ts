@@ -1,17 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { createHashHistory, createBrowserHistory } from 'history'
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware } from 'connected-react-router'
 import { createLogger } from 'redux-logger'
-import rootReducer from '../reducers'
+import createRootReducer from '../reducers'
 
 declare const window: Window & {
-  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__? (a: any): void
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?(a: any): void
 }
 
 declare const module: NodeModule & {
   hot?: {
-    accept (...args: any[]): any
+    accept(...args: any[]): any
   }
 }
 
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'development') {
   const composeEnhancers: typeof compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         // Options: http://zalmoxisus.github.io/redux-devtools-extension/API/Arguments.html
-    }) as any)
+      }) as any)
     : compose
 
   history = createHashHistory()
@@ -36,11 +36,15 @@ if (process.env.NODE_ENV === 'development') {
   const enhancer = composeEnhancers(applyMiddleware(thunk, router, logger))
 
   configureStore = (initialState: Object) => {
-    const store = createStore(rootReducer, initialState, enhancer)
+    const store = createStore(
+      createRootReducer(history),
+      initialState,
+      enhancer
+    )
 
     if (module.hot) {
       module.hot.accept('../reducers', () =>
-        store.replaceReducer(require('../reducers'))
+        store.replaceReducer(createRootReducer(history))
       )
     }
 
@@ -51,7 +55,7 @@ if (process.env.NODE_ENV === 'development') {
   const router = routerMiddleware(history)
   const enhancer = applyMiddleware(thunk, router)
   configureStore = (initialState: Object) => {
-    return createStore(rootReducer, initialState, enhancer)
+    return createStore(createRootReducer(history), initialState, enhancer)
   }
 }
 
