@@ -1,13 +1,15 @@
 import * as React from 'react'
-import { Store, Provider } from 'react-redux'
+import { Store } from 'redux'
+import { Provider } from 'react-redux'
 import { History } from 'history'
-import { ConnectedRouter } from 'react-router-redux'
-import Routes from '../routes'
+import { ConnectedRouter } from 'connected-react-router'
+import Routes from './routes'
 import { ipcRenderer } from 'electron'
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import normalize from 'styled-normalize'
-import variables from './css/variables'
-injectGlobal`
+import variables from './components/css/variables'
+
+const GlobalStyle = createGlobalStyle`
   ${normalize}
   html,
   body {
@@ -45,7 +47,7 @@ interface IRootType {
   history: History
 }
 
-export default function Root ({ store, history }: IRootType) {
+export default function Root({ store, history }: IRootType) {
   // send an sync event to main process to show main window
   ipcRenderer.sendSync('showWindow')
 
@@ -54,6 +56,7 @@ export default function Root ({ store, history }: IRootType) {
       <ConnectedRouter history={history}>
         <Routes />
       </ConnectedRouter>
+      <GlobalStyle />
     </Provider>
   )
 }

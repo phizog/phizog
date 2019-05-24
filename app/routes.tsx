@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router'
-import App from './components/App'
-import Terms from './components/Terms'
+import App from './App'
 import LoginWindow from './container/LoginWindow'
 import { ProfileContext } from './providers/profile'
 import { Profiler } from './modules/profiler'
@@ -43,9 +42,8 @@ export default () => (
   <App>
     <ProfileContext.Provider value={new Profiler()}>
       <Switch>
-        <PrivateRoute path='/login' component={LoginWindow} />
-        <Route path='/terms' render={(props: any) => <Terms {...props} />} />
-        <PrivateRoute path='/' component={HomeWindow} />
+        <PrivateRoute path="/login" component={LoginWindow} />
+        <PrivateRoute path="/" component={HomeWindow} />
       </Switch>
     </ProfileContext.Provider>
   </App>

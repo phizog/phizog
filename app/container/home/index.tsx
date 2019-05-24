@@ -7,17 +7,17 @@ import * as classnames from 'classnames'
 import Header from './header'
 import Container from './container'
 
-export interface IProps extends RouteComponentProps<any> {
+export interface IHomeProps extends RouteComponentProps<any> {
   inProgress: boolean
   profile: IProfiler
-  toggle (): void
+  toggle(): void
 }
 
-export class Home extends React.Component<IProps> {
-  constructor (props: any) {
+export class Home extends React.Component<IHomeProps> {
+  constructor(props: any) {
     super(props)
   }
-  componentWillMount () {
+  componentWillMount() {
     let win = remote.getCurrentWindow()
     win.setResizable(true)
     win.setMinimumSize(
@@ -27,7 +27,7 @@ export class Home extends React.Component<IProps> {
     win.setSize(constants.windows.main.width, constants.windows.main.height)
     win.center()
   }
-  render () {
+  render() {
     return (
       <div className={classnames('subwindow')}>
         <Header />

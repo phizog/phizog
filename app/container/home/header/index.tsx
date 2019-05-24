@@ -2,9 +2,9 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Row, Col } from 'react-flexbox-grid'
 import * as classnames from 'classnames'
-import variables from '../../css/variables'
+import variables from '../../../components/css/variables'
 import Icon from '../../../resources/icons'
-import { Button, GroupButton } from '../../button'
+import { Button, GroupButton } from '../../../components/button'
 import { Tabs } from './tabs'
 
 const HeaderStyle = styled.div`
@@ -16,13 +16,13 @@ const HeaderStyle = styled.div`
 const Nav = styled.div``
 
 export default class Header extends React.Component<any, any> {
-  constructor (props: any) {
+  constructor(props: any) {
     super(props)
   }
-  render () {
+  render() {
     return (
       <HeaderStyle>
-        <Row middle='xs'>
+        <Row middle="xs">
           <Col xs={10} className={classnames('align_left')}>
             <Tabs />
           </Col>
@@ -34,7 +34,7 @@ export default class Header extends React.Component<any, any> {
                 <Button className={classnames('transparent')}>
                   <Icon
                     color={variables.buttonColor}
-                    kind='settings'
+                    kind="settings"
                     width={13}
                     height={13}
                   />
@@ -42,7 +42,7 @@ export default class Header extends React.Component<any, any> {
                 <Button className={classnames('transparent')}>
                   <Icon
                     color={variables.buttonColor}
-                    kind='sync'
+                    kind="sync"
                     width={13}
                     height={13}
                   />
@@ -50,14 +50,14 @@ export default class Header extends React.Component<any, any> {
                 <Button className={classnames('transparent')}>
                   <Icon
                     color={variables.buttonColor}
-                    kind='favorite'
+                    kind="favorite"
                     width={13}
                     height={13}
                   />
                 </Button>
               </GroupButton>
               <Button>
-                <Icon color='transparent' kind='user' width={13} height={13} />
+                <Icon color="transparent" kind="user" width={13} height={13} />
                 <span>Login</span>
               </Button>
             </Nav>
