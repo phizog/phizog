@@ -30,7 +30,7 @@ export class Profiler implements IProfiler {
   path: string
   github: Github
   private _data: TProfile
-  constructor (data?: TProfile, path?: string) {
+  constructor(data?: TProfile, path?: string) {
     this.github = new Github()
     this.path = path || constants.profile.path
     if (arguments.length === 0) {
@@ -39,10 +39,10 @@ export class Profiler implements IProfiler {
       this.data = data || guestProfile
     }
   }
-  public get data (): TProfile {
+  public get data(): TProfile {
     return this._data
   }
-  public set data (newData: TProfile) {
+  public set data(newData: TProfile) {
     this._data = newData
     this.github.setToken(this.data.token)
   }
@@ -52,7 +52,7 @@ export class Profiler implements IProfiler {
    * @returns {void}
    * @memberof Profiler
    */
-  load (): boolean {
+  load(): boolean {
     try {
       this.data = JSON.parse(readFileSync(this.path, 'utf8'))
       return true
@@ -72,10 +72,11 @@ export class Profiler implements IProfiler {
    * @returns {void}
    * @memberof Profiler
    */
-  save (data?: TProfile): boolean {
+  save(data?: TProfile): boolean {
     try {
       data = data || this.data || guestProfile
       writeFileSync(this.path, JSON.stringify(data))
+      this.data = data
       return true
     } catch (error) {
       throw error
@@ -88,7 +89,7 @@ export class Profiler implements IProfiler {
    * @returns {data is IProfile}
    * @memberof Profiler
    */
-  isValid (data: TProfile = this.data): data is TProfile {
+  isValid(data: TProfile = this.data): data is TProfile {
     return data.token.length > 0
   }
   /**
@@ -97,7 +98,7 @@ export class Profiler implements IProfiler {
    * @returns {Promise<void>}
    * @memberof Profiler
    */
-  async authorizeRequest (): Promise<void> {
+  async authorizeRequest(): Promise<void> {
     try {
       const req = await axios.get(constants.oauth.url, {
         params: constants.oauth.parameters
@@ -114,12 +115,20 @@ export class Profiler implements IProfiler {
    * @returns {Promise<boolean>}
    * @memberof Profiler
    */
-  async pingtoken (): Promise<boolean> {
+  async pingtoken(): Promise<boolean> {
     try {
       const req = await this.github.ping()
       return req.status === 200
     } catch (error) {
       throw new Error(error)
+    }
+  }
+  destroy(): boolean {
+    try {
+      this.save(guestProfile)
+      return true
+    } catch (error) {
+      throw error
     }
   }
 }
