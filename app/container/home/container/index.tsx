@@ -1,8 +1,7 @@
 import * as React from 'react'
-import { setSkipLogin } from '../../../providers/auth'
 import styled from 'styled-components'
-import variables from '../../css/variables'
-import { IProps } from '..'
+import variables from '../../../components/css/variables'
+import { IHomeProps } from '..'
 
 const ContainerStyle = styled.div`
   width: 100%;
@@ -10,17 +9,16 @@ const ContainerStyle = styled.div`
   background: ${variables.containerBg};
 `
 
-export default class Container extends React.Component<IProps, any> {
-  constructor (props: any) {
+export default class Container extends React.Component<IHomeProps, any> {
+  constructor(props: any) {
     super(props)
-    this.logout = this.logout.bind(this)
   }
-  logout () {
+  logout = () => {
     if (this.props.inProgress) this.props.toggle()
-    setSkipLogin(this.props.profile, false)
-    this.props.history.push('/login')
+    this.props.profile.destroy()
+    this.props.history.push('/login', { skipLogin: false })
   }
-  render () {
+  render() {
     return (
       <ContainerStyle>
         This is Phizog

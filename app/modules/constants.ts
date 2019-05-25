@@ -4,12 +4,25 @@
 const isRenderer = require('is-electron-renderer')
 import { app, remote } from 'electron'
 import { join } from 'path'
+import { queryString } from './util'
 let currentApp = isRenderer ? remote.app : app
 
-export const constants = {
-  meta: {
-    title: 'Phizog'
+export const meta = {
+  title: 'Phizog'
+}
+
+export const oauth = {
+  url: 'https://github.com/login/oauth/authorize',
+  parameters: {
+    client_id: '6ed184fcdf90a8ab84d6', // Phizog OAuth client id, created by owners
+    callback: 'https://phizog.github.io',
+    scope: 'gist',
+    allow_signup: true
   },
+  exchanger: 'https://phizog.github.io/exchanger.txt'
+}
+
+export const constants = {
   profile: {
     filename: 'phizog.json',
     path: join(currentApp.getPath('userData'), 'phizog.json')
@@ -20,9 +33,14 @@ export const constants = {
      * securty roles which required by Chromium
      */
     parent: {
-      show: false,
+      title: meta.title,
+      show: true,
       path: '#',
-      backgroundColor: '#141414'
+      backgroundColor: '#141414',
+      webPreferences: {
+        nodeIntegration: true,
+        webviewTag: true
+      }
     },
     main: {
       width: 1024,
@@ -35,19 +53,31 @@ export const constants = {
       height: 480,
       resizable: false,
       path: '#login'
-    }
-  },
-  oauth: {
-    url: 'https://github.com/login/oauth/authorize',
-    parameters: {
-      client_id: '6ed184fcdf90a8ab84d6', // Phizog OAuth client id, created by owners
-      callback: 'https://phizog.github.io',
-      scope: 'gist',
-      allow_signup: true
     },
-    exchanger: 'https://phizog.github.io/exchanger.txt'
+    github: {
+      title: 'Github OAuth Login',
+      width: 800,
+      height: 600,
+      resizable: false,
+      backgroundColor: '#ffffff',
+      show: false,
+      path: `${oauth.url}?${queryString(oauth.parameters)}`
+    }
   },
   api: {
     baseURL: 'https://api.github.com'
+  },
+  notification: {
+    general: {
+      displayTime: 3500
+    },
+    login: {
+      successful: {
+        title: `Congratulations, You logged in ${meta.title}.`
+      },
+      failed: {
+        title: `Oops! log in to application failed. You can try again later`
+      }
+    }
   }
 }

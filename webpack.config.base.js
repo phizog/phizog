@@ -28,8 +28,12 @@ module.exports = {
     modules: [
       path.join(__dirname, 'app'),
       path.resolve('./node_modules')
-    ]
+    ],
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
   },
   plugins: [],
-  mode: process.env.NODE_ENV
+  mode: process.env.NODE_ENV,
+  target: 'web'
 }

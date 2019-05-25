@@ -9,7 +9,7 @@ const Window = styled.div`
   }
 `
 export default class App extends React.Component {
-  render () {
+  render() {
     return <Window>{this.props.children}</Window>
   }
 }

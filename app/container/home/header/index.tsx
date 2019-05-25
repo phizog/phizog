@@ -2,10 +2,10 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Row, Col } from 'react-flexbox-grid'
 import * as classnames from 'classnames'
-import variables from '../../css/variables'
-import Icon from '../../../resources/icons'
-import { Button, GroupButton } from '../../button'
+import variables from '../../../components/css/variables'
+import { Button, GroupButton } from '../../../components/button'
 import { Tabs } from './tabs'
+import ReactSVG from 'react-svg'
 
 const HeaderStyle = styled.div`
   background: ${variables.backColorPrimary}
@@ -16,13 +16,13 @@ const HeaderStyle = styled.div`
 const Nav = styled.div``
 
 export default class Header extends React.Component<any, any> {
-  constructor (props: any) {
+  constructor(props: any) {
     super(props)
   }
-  render () {
+  render() {
     return (
       <HeaderStyle>
-        <Row middle='xs'>
+        <Row middle="xs">
           <Col xs={10} className={classnames('align_left')}>
             <Tabs />
           </Col>
@@ -32,32 +32,17 @@ export default class Header extends React.Component<any, any> {
                 style={{ display: 'inline-block', marginRight: '6px' }}
               >
                 <Button className={classnames('transparent')}>
-                  <Icon
-                    color={variables.buttonColor}
-                    kind='settings'
-                    width={13}
-                    height={13}
-                  />
+                  <ReactSVG src='resources/icons/svg/settings.svg' beforeInjection={svg => { svg.setAttribute('fill', variables.buttonColor) }} />
                 </Button>
                 <Button className={classnames('transparent')}>
-                  <Icon
-                    color={variables.buttonColor}
-                    kind='sync'
-                    width={13}
-                    height={13}
-                  />
+                  <ReactSVG src='resources/icons/svg/sync.svg' beforeInjection={svg => { svg.setAttribute('fill', variables.buttonColor) }} />
                 </Button>
                 <Button className={classnames('transparent')}>
-                  <Icon
-                    color={variables.buttonColor}
-                    kind='favorite'
-                    width={13}
-                    height={13}
-                  />
+                  <ReactSVG src='resources/icons/svg/favorite.svg' beforeInjection={svg => { svg.setAttribute('fill', variables.buttonColor) }} />
                 </Button>
               </GroupButton>
               <Button>
-                <Icon color='transparent' kind='user' width={13} height={13} />
+                <ReactSVG src='resources/icons/svg/user.svg' beforeInjection={svg => { svg.setAttribute('fill', 'transparent') }} style={{ display: 'inherit' }} />
                 <span>Login</span>
               </Button>
             </Nav>

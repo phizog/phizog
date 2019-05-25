@@ -69,6 +69,7 @@ app/dist
 release
 app/main.js
 app/main.js.map
+app/bundle.js
 
 # tmps
 tmp

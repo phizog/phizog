@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import * as classnames from 'classnames'
 import * as UUID from 'uuid/v4'
 import { findDOMNode } from 'react-dom'
-import variables from '../../css/variables'
-import Icon from '../../../resources/icons'
-import { Button } from '../../button'
+import variables from '../../../components/css/variables'
+import ReactSVG from 'react-svg'
+import { Button } from '../../../components/button'
 
 export type TabState = {
   title: string
@@ -13,9 +13,9 @@ export type TabState = {
   closed: boolean
 }
 export type TabProps = {
-  onInit (tab: Tab): void
-  onClick (tab: Tab): void
-  onClose (requestedTab: Tab, callback: Function): void
+  onInit(tab: Tab): void
+  onClick(tab: Tab): void
+  onClose(requestedTab: Tab, callback: Function): void
   id: string
   prevTab: string
   nextTab: string
@@ -54,18 +54,15 @@ const TabStyle = styled.div`
 `
 
 export class Tab extends React.Component<TabProps, TabState> {
-  constructor (props: any) {
+  constructor(props: any) {
     super(props)
-    this.activeTab = this.activeTab.bind(this)
-    this.deactiveTab = this.deactiveTab.bind(this)
-    this.closeTab = this.closeTab.bind(this)
     this.state = {
       title: 'New Connection',
       focused: false,
       closed: false
     }
   }
-  activeTab (onClose?: any) {
+  activeTab = (onClose?: any) => {
     if (!this.state.focused) {
       this.setState({
         focused: true
@@ -73,12 +70,12 @@ export class Tab extends React.Component<TabProps, TabState> {
       if (!onClose) this.props.onClick(this)
     }
   }
-  deactiveTab () {
+  deactiveTab = () => {
     this.setState({
       focused: false
     })
   }
-  closeTab () {
+  closeTab = () => {
     this.props.onClose(this, () => {
       this.setState({
         closed: true,
@@ -86,10 +83,10 @@ export class Tab extends React.Component<TabProps, TabState> {
       })
     })
   }
-  componentDidMount () {
+  componentDidMount() {
     this.props.onInit(this)
   }
-  render () {
+  render() {
     if (this.state.closed) return null
     return (
       <TabStyle
@@ -104,7 +101,7 @@ export class Tab extends React.Component<TabProps, TabState> {
           onClick={this.closeTab}
           className={classnames('transparent', 'close_tab')}
         >
-          <Icon color='transparent' kind='close' width={5} height={5} />
+          <ReactSVG src='resources/icons/svg/close.svg' beforeInjection={svg => { svg.setAttribute('fill', 'transparent') }} />
         </Button>
       </TabStyle>
     )
@@ -143,12 +140,8 @@ const NewTab = styled.button`
 `
 
 export class Tabs extends React.Component<any, any> {
-  constructor (props: any) {
+  constructor(props: any) {
     super(props)
-    this.tabOnInitCallback = this.tabOnInitCallback.bind(this)
-    this.tabOnClickCallback = this.tabOnClickCallback.bind(this)
-    this.tabOnCloseCallback = this.tabOnCloseCallback.bind(this)
-    this.newTab = this.newTab.bind(this)
     this.state = {
       tabs: new Map(),
       tabsRef: React.createRef(),
@@ -156,7 +149,7 @@ export class Tabs extends React.Component<any, any> {
       lastTab: null
     }
   }
-  tabOnInitCallback (tab: Tab) {
+  tabOnInitCallback = (tab: Tab) => {
     if (this.state.focusedTab) {
       this.state.tabs.get(this.state.focusedTab).ref.current.deactiveTab()
     }
@@ -165,7 +158,7 @@ export class Tabs extends React.Component<any, any> {
       focusedTab: tab.props.id
     })
   }
-  tabOnClickCallback (tab: Tab) {
+  tabOnClickCallback = (tab: Tab) => {
     if (this.state.focusedTab) {
       this.state.tabs.get(this.state.focusedTab).ref.current.deactiveTab()
     }
@@ -173,7 +166,7 @@ export class Tabs extends React.Component<any, any> {
       focusedTab: tab.props.id
     })
   }
-  tabOnCloseCallback (requestedTab: Tab, callback: Function) {
+  tabOnCloseCallback = (requestedTab: Tab, callback: Function) => {
     if (this.state.tabs.size === 1) return
 
     let focusOn: string = 'prevTab'
@@ -184,12 +177,18 @@ export class Tabs extends React.Component<any, any> {
 
     // set nexttab
     if (requestedTab.props.prevTab && requestedTab.props.nextTab) {
-      tabs.set(requestedTab.props.prevTab, Object.assign(prevTab, {
-        nextTab: requestedTab.props.nextTab
-      }))
-      tabs.set(requestedTab.props.nextTab, Object.assign(nextTab, {
-        prevTab: requestedTab.props.prevTab
-      }))
+      tabs.set(
+        requestedTab.props.prevTab,
+        Object.assign(prevTab, {
+          nextTab: requestedTab.props.nextTab
+        })
+      )
+      tabs.set(
+        requestedTab.props.nextTab,
+        Object.assign(nextTab, {
+          prevTab: requestedTab.props.prevTab
+        })
+      )
       focusOn = 'nextTab'
     }
 
@@ -206,7 +205,7 @@ export class Tabs extends React.Component<any, any> {
       tabs: tabs
     })
   }
-  newTab () {
+  newTab = () => {
     const key: string = UUID()
     let tabs: Map<string, object> = this.state.tabs
     tabs.set(key, {
@@ -216,27 +215,30 @@ export class Tabs extends React.Component<any, any> {
     })
     if (this.state.lastTab) {
       let lastTab: any = tabs.get(this.state.lastTab)
-      tabs.set(lastTab.ref.current.props.id, Object.assign(tabs.get(lastTab.ref.current.props.id), {
-        nextTab: key
-      }))
+      tabs.set(
+        lastTab.ref.current.props.id,
+        Object.assign(tabs.get(lastTab.ref.current.props.id), {
+          nextTab: key
+        })
+      )
     }
     this.setState({
       tabs: tabs,
       lastTab: key
     })
   }
-  componentWillMount () {
+  componentWillMount() {
     this.newTab()
   }
-  componentWillUpdate () {
+  componentWillUpdate() {
     let tabsNode: any = findDOMNode(this.state.tabsRef.current)
     tabsNode.scroll({
       left: tabsNode.scrollWidth,
       behavior: 'smooth'
     })
   }
-  render () {
-    let tabsNodes = ((arr: Map<string, object>) => {
+  render() {
+    let tabsNodes = (arr: Map<string, object>) => {
       let toReturn: any = []
       arr.forEach((properties: any, tab: any) => {
         toReturn.push(
@@ -248,11 +250,12 @@ export class Tabs extends React.Component<any, any> {
             onClose={this.tabOnCloseCallback}
             prevTab={properties.prevTab}
             nextTab={properties.nextTab}
-          />)
+          />
+        )
       })
 
       return toReturn
-    })
+    }
 
     return (
       <TabsStyle ref={this.state.tabsRef}>
