@@ -16,7 +16,7 @@ export default class Container extends React.Component<IHomeProps, any> {
   logout = () => {
     if (this.props.inProgress) this.props.toggle()
     this.props.profile.destroy()
-    this.props.history.push('/login')
+    this.props.history.push('/login', { skipLogin: false })
   }
   render() {
     return (
