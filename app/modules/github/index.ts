@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosPromise, AxiosResponse } from 'axios'
-import { constants } from '../constants'
+import { constants, meta } from '../constants'
 import { IGithub, IFile } from './interfaces'
 import { queryString } from '../util'
 
@@ -10,7 +10,7 @@ export class Github implements IGithub {
    */
   token: string
   axios: AxiosInstance
-  constructor () {
+  constructor() {
     // create an instance from axios module and customize it
     this.axios = axios.create({
       baseURL: constants.api.baseURL
@@ -22,7 +22,7 @@ export class Github implements IGithub {
    * @param {string} token
    * @memberof Github
    */
-  setToken (token: string): void {
+  setToken(token: string): void {
     this.axios.interceptors.request.use(config => {
       config.headers['Authorization'] = token
 
@@ -38,7 +38,7 @@ export class Github implements IGithub {
    * @returns {AxiosPromise}
    * @memberof Github
    */
-  ping (): AxiosPromise {
+  ping(): AxiosPromise {
     return this.axios.get('/gists/starred')
   }
   /**
@@ -49,7 +49,7 @@ export class Github implements IGithub {
    * @returns {AxiosPromise}
    * @memberof Github
    */
-  createGist (files: IFile): AxiosPromise {
+  createGist(files: IFile): AxiosPromise {
     return this.axios.post('/gists', gistBodyCreator(files))
   }
   /**
@@ -59,7 +59,7 @@ export class Github implements IGithub {
    * @returns {AxiosPromise}
    * @memberof Github
    */
-  downloadGist (id?: string): AxiosPromise {
+  downloadGist(id?: string): AxiosPromise {
     if (id) return this.axios.get(`/gists/${id}`)
     else return this.findGist()
   }
@@ -70,7 +70,7 @@ export class Github implements IGithub {
    * @returns {AxiosPromise}
    * @memberof Github
    */
-  deleteGist (id: string): AxiosPromise {
+  deleteGist(id: string): AxiosPromise {
     return this.axios.delete(`/gists/${id}`)
   }
   /**
@@ -81,7 +81,7 @@ export class Github implements IGithub {
    * @returns {AxiosPromise}
    * @memberof Github
    */
-  updateGist (id: string, files: IFile): AxiosPromise {
+  updateGist(id: string, files: IFile): AxiosPromise {
     return this.axios.patch(`/gists/${id}`, gistBodyCreator(files))
   }
   /**
@@ -92,7 +92,7 @@ export class Github implements IGithub {
    * @returns {Promise}
    * @memberof Github
    */
-  findGist (page: number = 1): Promise<any> {
+  findGist(page: number = 1): Promise<any> {
     return new Promise((resolve, reject) => {
       this.axios
         .get(`/gists`, {
@@ -119,7 +119,7 @@ export class Github implements IGithub {
    * @returns {Promise}
    * @memberof Github
    */
-  gistExtractor (res: AxiosResponse): Promise<any> {
+  gistExtractor(res: AxiosResponse): Promise<any> {
     return new Promise((resolve, reject) => {
       if (res.hasOwnProperty('data')) {
         for (const gist of res.data) {
@@ -149,7 +149,7 @@ export class Github implements IGithub {
       }
     })
   }
-  exchanger (code: string): Promise<any> {
+  exchanger(code: string): Promise<any> {
     return new Promise((resolve, reject) => {
       axios
         .get(constants.oauth.exchanger)
@@ -159,7 +159,7 @@ export class Github implements IGithub {
             redirect_uri: constants.oauth.parameters.callback,
             client_id: constants.oauth.parameters.client_id
           }
-          resolve(axios.post(`${response.data}?${queryString(params)}`))
+          resolve(axios.post(`${response.data.trim()}?${queryString(params)}`))
         })
         .catch(error => {
           reject(error)
@@ -176,7 +176,7 @@ export class Github implements IGithub {
  */
 const gistBodyCreator = (files: IFile) => ({
   public: false,
-  description: `${constants.meta.title} - Profile File`,
+  description: `${meta.title} - Profile File`,
   files: files
 })
 
