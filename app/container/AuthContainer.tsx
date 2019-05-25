@@ -5,8 +5,7 @@ import * as InprogressActions from '../actions/inprogress'
 import { IState } from '../reducers'
 import { RouteComponentProps } from 'react-router'
 import { IProfiler } from '../modules/profiler/interfaces'
-import { logger } from '../modules/util'
-import { LOGLEVEL } from '../interfaces/util'
+import logger from '../modules/logger'
 
 export interface IProps extends RouteComponentProps<any> {
   profile: IProfiler
@@ -28,9 +27,12 @@ class Authorizer extends React.Component<IProps, any> {
   }
   componentDidUpdate() {
     // set skipLogin property
-    let skipLogin: boolean = this.props.profile.data.skipLogin
+    let skipLogin: boolean = this.props.history.location.state
+      ? this.props.history.location.state.skipLogin
+      : this.props.profile.data.skipLogin
 
     if (skipLogin) {
+      logger.info('User has been logged in.', this.props.profile.data)
       setSkipLogin(this.props.profile, skipLogin)
       if (this.props.children.props.location.pathname !== '/') {
         this.props.children.props.history.push('/')
@@ -60,10 +62,10 @@ class Authorizer extends React.Component<IProps, any> {
 }
 
 export const setSkipLogin = (profile: IProfiler, nextState: boolean) => {
+  logger.info('login skipped', nextState)
   if (profile.data.skipLogin !== nextState) {
     profile.data.skipLogin = nextState
-    logger(LOGLEVEL.INFO, 'login skipped', profile.data.skipLogin)
-    profile.save()
+    profile.save(profile.data)
   }
 }
 
