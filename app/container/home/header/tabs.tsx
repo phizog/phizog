@@ -4,7 +4,7 @@ import * as classnames from 'classnames'
 import * as UUID from 'uuid/v4'
 import { findDOMNode } from 'react-dom'
 import variables from '../../../components/css/variables'
-import Icon from '../../../resources/icons'
+import ReactSVG from 'react-svg'
 import { Button } from '../../../components/button'
 
 export type TabState = {
@@ -56,16 +56,13 @@ const TabStyle = styled.div`
 export class Tab extends React.Component<TabProps, TabState> {
   constructor(props: any) {
     super(props)
-    this.activeTab = this.activeTab.bind(this)
-    this.deactiveTab = this.deactiveTab.bind(this)
-    this.closeTab = this.closeTab.bind(this)
     this.state = {
       title: 'New Connection',
       focused: false,
       closed: false
     }
   }
-  activeTab(onClose?: any) {
+  activeTab = (onClose?: any) => {
     if (!this.state.focused) {
       this.setState({
         focused: true
@@ -73,12 +70,12 @@ export class Tab extends React.Component<TabProps, TabState> {
       if (!onClose) this.props.onClick(this)
     }
   }
-  deactiveTab() {
+  deactiveTab = () => {
     this.setState({
       focused: false
     })
   }
-  closeTab() {
+  closeTab = () => {
     this.props.onClose(this, () => {
       this.setState({
         closed: true,
@@ -104,7 +101,7 @@ export class Tab extends React.Component<TabProps, TabState> {
           onClick={this.closeTab}
           className={classnames('transparent', 'close_tab')}
         >
-          <Icon color="transparent" kind="close" width={5} height={5} />
+          <ReactSVG src='resources/icons/svg/close.svg' beforeInjection={svg => { svg.setAttribute('fill', 'transparent') }} />
         </Button>
       </TabStyle>
     )
@@ -145,10 +142,6 @@ const NewTab = styled.button`
 export class Tabs extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
-    this.tabOnInitCallback = this.tabOnInitCallback.bind(this)
-    this.tabOnClickCallback = this.tabOnClickCallback.bind(this)
-    this.tabOnCloseCallback = this.tabOnCloseCallback.bind(this)
-    this.newTab = this.newTab.bind(this)
     this.state = {
       tabs: new Map(),
       tabsRef: React.createRef(),
@@ -156,7 +149,7 @@ export class Tabs extends React.Component<any, any> {
       lastTab: null
     }
   }
-  tabOnInitCallback(tab: Tab) {
+  tabOnInitCallback = (tab: Tab) => {
     if (this.state.focusedTab) {
       this.state.tabs.get(this.state.focusedTab).ref.current.deactiveTab()
     }
@@ -165,7 +158,7 @@ export class Tabs extends React.Component<any, any> {
       focusedTab: tab.props.id
     })
   }
-  tabOnClickCallback(tab: Tab) {
+  tabOnClickCallback = (tab: Tab) => {
     if (this.state.focusedTab) {
       this.state.tabs.get(this.state.focusedTab).ref.current.deactiveTab()
     }
@@ -173,7 +166,7 @@ export class Tabs extends React.Component<any, any> {
       focusedTab: tab.props.id
     })
   }
-  tabOnCloseCallback(requestedTab: Tab, callback: Function) {
+  tabOnCloseCallback = (requestedTab: Tab, callback: Function) => {
     if (this.state.tabs.size === 1) return
 
     let focusOn: string = 'prevTab'
@@ -212,7 +205,7 @@ export class Tabs extends React.Component<any, any> {
       tabs: tabs
     })
   }
-  newTab() {
+  newTab = () => {
     const key: string = UUID()
     let tabs: Map<string, object> = this.state.tabs
     tabs.set(key, {

@@ -65,6 +65,7 @@
     "react-redux": "7.0.3",
     "react-router": "5.0.0",
     "react-router-dom": "5.0.0",
+    "react-svg": "^10.0.4",
     "redux": "^4.0.1",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
@@ -106,8 +107,7 @@
     "package:all": "npm run build && build -mwl",
     "formatter": "prettier --parser typescript --write --config .prettierrc \"{app,test}/**/*.ts{,x}\"",
     "lint": "tslint -c tslint.json \"{app,test}/**/*.ts{,x}\"",
-    "lint:fix": "tslint -c tslint.json --fix \"{app,test}/**/*.ts{,x}\"",
-    "icon:gen": "node scripts/icon-generator.js && npm run formatter && npm run lint"
+    "lint:fix": "tslint -c tslint.json --fix \"{app,test}/**/*.ts{,x}\""
   },
   "build": {
     "productName": "Phizog",
@@ -214,7 +214,10 @@
   },
   "lint-staged": {
     "linters": {
-      "./**/*.{ts,tsx}": ["npm run lint:fix && npm run formatter", "git add"]
+      "./**/*.{ts,tsx}": [
+        "npm run lint:fix && npm run formatter",
+        "git add"
+      ]
     }
   }
 }
