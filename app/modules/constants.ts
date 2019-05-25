@@ -4,10 +4,22 @@
 const isRenderer = require('is-electron-renderer')
 import { app, remote } from 'electron'
 import { join } from 'path'
+import { queryString } from './util'
 let currentApp = isRenderer ? remote.app : app
 
 export const meta = {
   title: 'Phizog'
+}
+
+export const oauth = {
+  url: 'https://github.com/login/oauth/authorize',
+  parameters: {
+    client_id: '6ed184fcdf90a8ab84d6', // Phizog OAuth client id, created by owners
+    callback: 'https://phizog.github.io',
+    scope: 'gist',
+    allow_signup: true
+  },
+  exchanger: 'https://phizog.github.io/exchanger.txt'
 }
 
 export const constants = {
@@ -41,17 +53,16 @@ export const constants = {
       height: 480,
       resizable: false,
       path: '#login'
-    }
-  },
-  oauth: {
-    url: 'https://github.com/login/oauth/authorize',
-    parameters: {
-      client_id: '6ed184fcdf90a8ab84d6', // Phizog OAuth client id, created by owners
-      callback: 'https://phizog.github.io',
-      scope: 'gist',
-      allow_signup: true
     },
-    exchanger: 'https://phizog.github.io/exchanger.txt'
+    github: {
+      title: 'Github OAuth Login',
+      width: 800,
+      height: 600,
+      resizable: false,
+      backgroundColor: '#ffffff',
+      show: false,
+      path: `${oauth.url}?${queryString(oauth.parameters)}`
+    }
   },
   api: {
     baseURL: 'https://api.github.com'

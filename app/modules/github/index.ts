@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosPromise, AxiosResponse } from 'axios'
-import { constants, meta } from '../constants'
+import { constants, meta, oauth } from '../constants'
 import { IGithub, IFile } from './interfaces'
 import { queryString } from '../util'
 
@@ -152,12 +152,12 @@ export class Github implements IGithub {
   exchanger(code: string): Promise<any> {
     return new Promise((resolve, reject) => {
       axios
-        .get(constants.oauth.exchanger)
+        .get(oauth.exchanger)
         .then(response => {
           let params: Object = {
             code: code,
-            redirect_uri: constants.oauth.parameters.callback,
-            client_id: constants.oauth.parameters.client_id
+            redirect_uri: oauth.parameters.callback,
+            client_id: oauth.parameters.client_id
           }
           resolve(axios.post(`${response.data.trim()}?${queryString(params)}`))
         })

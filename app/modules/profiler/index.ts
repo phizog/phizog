@@ -1,4 +1,4 @@
-import { constants } from '../constants'
+import { constants, oauth } from '../constants'
 import { readFileSync, writeFileSync } from 'fs'
 import { TProfile, IProfiler } from './interfaces'
 import axios, { AxiosError } from 'axios'
@@ -59,7 +59,7 @@ export class Profiler implements IProfiler {
     } catch (error) {
       switch (error.code) {
         case 'ENOENT':
-          return this.save()
+          return this.save(guestProfile)
         default:
           throw error
       }
@@ -99,8 +99,8 @@ export class Profiler implements IProfiler {
    */
   async authorizeRequest(): Promise<void> {
     try {
-      const req = await axios.get(constants.oauth.url, {
-        params: constants.oauth.parameters
+      const req = await axios.get(oauth.url, {
+        params: oauth.parameters
       })
       return messageSerializer(req.status, req.data)
     } catch (error) {
