@@ -6,10 +6,11 @@ import { app, remote } from 'electron'
 import { join } from 'path'
 let currentApp = isRenderer ? remote.app : app
 
+export const meta = {
+  title: 'Phizog'
+}
+
 export const constants = {
-  meta: {
-    title: 'Phizog'
-  },
   profile: {
     filename: 'phizog.json',
     path: join(currentApp.getPath('userData'), 'phizog.json')
@@ -20,9 +21,14 @@ export const constants = {
      * securty roles which required by Chromium
      */
     parent: {
-      show: false,
+      title: meta.title,
+      show: true,
       path: '#',
-      backgroundColor: '#141414'
+      backgroundColor: '#141414',
+      webPreferences: {
+        nodeIntegration: true,
+        webviewTag: true
+      }
     },
     main: {
       width: 1024,
@@ -49,5 +55,18 @@ export const constants = {
   },
   api: {
     baseURL: 'https://api.github.com'
+  },
+  notification: {
+    general: {
+      displayTime: 3500
+    },
+    login: {
+      successful: {
+        title: `Congratulations, You logged in ${meta.title}.`
+      },
+      failed: {
+        title: `Oops! log in to application failed. You can try again later`
+      }
+    }
   }
 }
