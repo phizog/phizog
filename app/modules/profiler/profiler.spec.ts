@@ -1,18 +1,28 @@
 /* eslint-env jest */
-import { Profiler } from './index'
+import { Profiler, guestProfile } from './index'
+import { TProfile } from './interfaces'
 import { join } from 'path'
 import { existsSync } from 'fs'
 
 describe('Profiler', () => {
   let instance: Profiler
   let profilePath = join(__dirname, '..', '..', '..', 'tmp')
+  let profile: TProfile = {
+    user_type: 'guest',
+    token: 'blah blah blah',
+    skipLogin: true
+  }
+  let authorizedProfile: TProfile = {
+    user_type: 'authorized',
+    token: 'blah blah blah',
+    gistId: 'asd2342fsdvd3s7',
+    lastSyncDate: new Date(),
+    skipLogin: true
+  }
 
   it('Check instance is type of Profiler', () => {
     instance = new Profiler(
-      {
-        user_type: 'guest',
-        token: ''
-      },
+      guestProfile,
       profilePath
     )
     expect(instance).toBeInstanceOf(Profiler)
@@ -20,34 +30,29 @@ describe('Profiler', () => {
 
   it(`create guest profile with token`, () => {
     instance = new Profiler(
-      {
-        user_type: 'guest',
-        token: 'blah blah blah'
-      },
+      profile,
       profilePath
     )
-    expect(instance.save()).toBe(true)
+
+    profile.token = 'test'
+    instance.save(profile)
+    expect(instance.data.token).toBe('test')
   })
 
   it(`create authorized profile`, () => {
     instance = new Profiler(
-      {
-        user_type: 'authorized',
-        token: 'blah blah blah',
-        gistId: 'asd2342fsdvd3s7',
-        lastSyncDate: new Date()
-      },
+      profile,
       profilePath
     )
-    expect(instance.save()).toBe(true)
+
+    instance.save({ ...profile, ...authorizedProfile})
+
+    expect(instance.data.user_type).toBe('authorized')
   })
 
   it(`load profile`, () => {
     instance = new Profiler(
-      {
-        user_type: 'authorized',
-        token: 'blah'
-      },
+      guestProfile,
       profilePath
     )
     expect(instance.load()).toBe(true)
@@ -55,10 +60,7 @@ describe('Profiler', () => {
 
   it(`create new profile while the profile path doesn't exist`, () => {
     instance = new Profiler(
-      {
-        user_type: 'guest',
-        token: ''
-      },
+      guestProfile,
       profilePath
     )
     instance.load()
