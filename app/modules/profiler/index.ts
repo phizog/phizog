@@ -72,10 +72,9 @@ export class Profiler implements IProfiler {
    * @returns {void}
    * @memberof Profiler
    */
-  save(data?: TProfile): boolean {
+  save(data: TProfile): boolean {
     try {
-      data = data || this.data || guestProfile
-      writeFileSync(this.path, JSON.stringify(data))
+      writeFileSync(this.path, JSON.stringify(data || guestProfile))
       this.data = data
       return true
     } catch (error) {
