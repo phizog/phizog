@@ -1,7 +1,5 @@
 import * as pino from 'pino'
 
-const logger = pino({
-  prettyPrint: true
-})
+const logger = pino()
 
 export default logger
